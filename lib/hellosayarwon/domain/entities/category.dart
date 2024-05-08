@@ -1,7 +1,6 @@
 
-import 'package:doublefive/domain/entities/imirror/mirror_category.dart';
 
-import '../directory/contact_data.dart';
+import 'article.dart';
 
 class Category{
   // for id
@@ -22,28 +21,33 @@ class Category{
   String updatedAt;
 
 
-  MirrorArticle({
+  Category({
     required this.id,
+    required this.parent,
+    required this.permalink,
     required this.title,
     required this.description,
     required this.thumbnail,
-    required this.categoryId,
-    required this.category,
-    required this.contactData,
+
+
+    required this.subCategories,
+    required this.articles,
+
     required this.createdAt,
     required this.updatedAt
   });
 
-  static MirrorArticle get sample{
+  static Category get sample{
 
-    return MirrorArticle(
+    return Category(
       id: 0,
+      parent: 0,
+      permalink: "",
       title:"title",
       description:"description",
       thumbnail: "https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?size=626&ext=jpg&ga=GA1.1.1412446893.1704758400&semt=sph", // "https://placehold.co/400", // "thumbnail",
-      categoryId: 0,
-      category : MirrorCategory.sample,
-      contactData : [], // empty array to avoid stack overflow
+      subCategories: [],
+      articles : [],
       createdAt:"createdAt",
       updatedAt:"updatedAt",
     );
