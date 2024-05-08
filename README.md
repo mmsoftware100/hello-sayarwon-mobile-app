@@ -16,3 +16,15 @@ Provider
 
 Presentation
 
+
+Documentation ရှိရင်တော့ ပိုမြန်မယ်။
+
+Data Structure နဲ့
+CRUD Methods တွေ။
+
+ဒါတောင် အရင်က ဟာတွေ ကူးတာများတယ်။
+စဉ်းစားရတာ ကို အတက်နိုင်ဆုံး လျှော့ထားတယ်။
+
+Usecase နဲ့ Provider အပိုင်း ဆက်သွားလိုက်မယ်။
+
+
