@@ -36,8 +36,8 @@ Usecase နဲ့ Provider အပိုင်း ဆက်သွားလို�
 - [0910] 
 
 
-- repository
-- usecases
+- [x] repository
+- [x] usecases
 - providers
 - pages
 - components

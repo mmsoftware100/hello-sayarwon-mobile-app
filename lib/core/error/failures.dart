@@ -21,7 +21,7 @@ class ValidationFailure extends Failure{
   final Map<String, List<String>> errors;
   ValidationFailure({required this.errors});
 }
-class SingleMessageReturnFailure extends Failure{
+class SingleMessageFailure extends Failure{
   final String message;
-  SingleMessageReturnFailure({required this.message});
+  SingleMessageFailure({required this.message});
 }
