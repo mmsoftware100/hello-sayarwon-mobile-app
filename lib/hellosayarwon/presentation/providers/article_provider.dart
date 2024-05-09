@@ -160,4 +160,5 @@ class ArticleProvider extends ChangeNotifier {
   }
 
   // life cycle methods (helpers) data တစ်ခုရဲ့ Life Cycle အပြည့်ဖြစ်အောင် ကူညီပေးမယ့် methods တွေ။
+  // လောလောဆယ် လိုသလောက်ပဲ အရင်ရေးထားမယ်။ Presentation ဘက်ကို သွားမယ်။
 }
