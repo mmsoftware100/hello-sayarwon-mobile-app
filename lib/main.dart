@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
 
 import 'hellosayarwon/presentation/pages/home/home_page.dart';
 
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
       // home: const MyHomePage(title: 'Hello Sayarwon'),
       initialRoute: HomePage.routeName,
       routes: {
-        HomePage.routeName : (context) => const HomePage()
+        HomePage.routeName : (context) => const HomePage(),
+        ArticleListPage.routeName : (context) => const ArticleListPage()
       },
     );
   }
