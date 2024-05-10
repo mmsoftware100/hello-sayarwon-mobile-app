@@ -33,9 +33,6 @@ Future<void> init() async {
   sl.registerLazySingleton<GetCategory>(() => GetCategory(categoryRepository: sl()));
 
 
-
-
-  //
   // /// Repositories
   // sl.registerLazySingleton<ArticleRepository>(() => MirrorArticleRepositoryImpl(mirrorArticleRemoteDatasource: sl(), mirrorArticleLocalDatasource: sl()));
   // sl.registerLazySingleton<CategoryRepository>(() => UserRepositoryImpl(userRemoteDatasource: sl()));
