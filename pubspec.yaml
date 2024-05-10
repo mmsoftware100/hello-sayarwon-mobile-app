@@ -49,6 +49,9 @@ dependencies:
   # Pull to Refresh
   pull_to_refresh: ^2.0.0
 
+  # Http
+  dio: ^4.0.4
+
 dev_dependencies:
   # json serialization
   json_annotation: ^4.4.0
