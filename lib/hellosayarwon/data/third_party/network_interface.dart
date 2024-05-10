@@ -68,10 +68,8 @@ class NetworkInterfaceImpl implements NetworkInterface{
     String query =  keyValuePairs.join('&');
 
     try{
-      String endPoint = url+ "?" + query;
-
+      String endPoint = "$url?$query";
       print(endPoint);
-
       if(bearerToken != null){
         client.options.headers["Authorization"] = "Bearer $bearerToken";
       }
@@ -79,10 +77,24 @@ class NetworkInterfaceImpl implements NetworkInterface{
       return response.data;
     }
     catch(exp){
-      if(exp is DioError){
-        print("exp is DioError");
-        print(exp.response);
-        rethrow;
+      if (exp is DioError) {
+        print(exp.type);
+        print(exp.type.runtimeType);
+        if (exp.type == DioErrorType.connectTimeout ||
+            exp.type == DioErrorType.receiveTimeout ||
+            exp.type == DioErrorType.sendTimeout ||
+            exp.type == DioErrorType.other) {
+          // Handle connection timeout (e.g., no internet connection)
+          print('Connection timeout: Check your internet connection');
+          throw SingleMessageException(message: "No Internet Connection");
+        }
+        print(exp.response?.data);
+        print(exp.response?.data.runtimeType);
+        print(exp.response?.data["message"]);
+        print(exp.response?.data["message"].runtimeType);
+        // ဒီ Rule ကတော့ Restful API မှာ သတ်သတ်မှတ်မှတ် ရှိမှ ကောင်းမယ်။
+        String message = exp.response?.data["message"] ?? "Something went wrong";
+        throw SingleMessageException(message: message);
       }
       print(exp);
       throw ServerException();

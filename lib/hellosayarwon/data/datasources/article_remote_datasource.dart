@@ -1,32 +1,71 @@
+import 'package:hellosayarwon/hellosayarwon/data/const/constants.dart';
+import 'package:hellosayarwon/hellosayarwon/data/third_party/network_interface.dart';
+
 import '../../domain/entities/article.dart';
 import '../../domain/entities/paras/get_article_para.dart';
 import '../../domain/entities/paras/get_articles_para.dart';
 import '../../domain/entities/paras/update_article_para.dart';
+import '../models/article_model.dart';
 
-abstract class ArticleRemoteDatasource{
+abstract class ArticleRemoteDatasource {
   // CRUD
-  Future< List<Article>> getArticles({required GetArticlesPara getArticlesPara});
-  Future< Article > getArticle({required GetArticlePara getArticlePara});
-  Future< Article > updateArticle({required UpdateArticlePara updateArticlePara}); // for favourite
+  Future<List<Article>> getArticles({required GetArticlesPara getArticlesPara});
+  Future<Article> getArticle({required GetArticlePara getArticlePara});
+  Future<Article> updateArticle(
+      {required UpdateArticlePara updateArticlePara}); // for favourite
 }
 
-class ArticleRemoteDatasourceImpl implements ArticleRemoteDatasource{
+class ArticleRemoteDatasourceImpl implements ArticleRemoteDatasource {
+  final NetworkInterface networkInterface;
+  ArticleRemoteDatasourceImpl({required this.networkInterface});
+
   @override
-  Future<Article> getArticle({required GetArticlePara getArticlePara}) {
-    // TODO: implement getArticle
-    throw UnimplementedError();
+  Future<Article> getArticle({required GetArticlePara getArticlePara}) async {
+    try {
+      String endpoint = '$articleEndpoint/${getArticlePara.permalink}';
+      dynamic response = await networkInterface.getRequest(
+          url: endpoint,
+          data: {},
+          bearerToken: getArticlePara.accessToken
+      );
+      var data = response['data'];
+      return ArticleModel.fromJson(data).toEntity();
+    } catch (e) {
+      print(e.runtimeType);
+      rethrow;
+    }
   }
 
   @override
-  Future<List<Article>> getArticles({required GetArticlesPara getArticlesPara}) {
-    // TODO: implement getArticles
-    throw UnimplementedError();
+  Future<List<Article>> getArticles( {required GetArticlesPara getArticlesPara}) async {
+    var map = {"page": getArticlesPara.page};
+    try {
+      dynamic response = await networkInterface.getRequest(
+          url: articlesEndpoint,
+          data: map,
+          bearerToken: getArticlesPara.accessToken
+      );
+      List<dynamic> data = response['data'];
+      // Serialize Here
+      List<Article> articles = [];
+      for (int i = 0; i < data.length; i++) {
+        try {
+          articles.add(ArticleModel.fromJson(data[i]).toEntity());
+        } catch (exp, stackTrace) {
+          print(exp);
+          print(stackTrace);
+        }
+      }
+      return articles;
+    } catch (e) {
+      print(e.runtimeType);
+      rethrow;
+    }
   }
 
   @override
-  Future<Article> updateArticle({required UpdateArticlePara updateArticlePara}) {
+  Future<Article> updateArticle( {required UpdateArticlePara updateArticlePara}) {
     // TODO: implement updateArticle
     throw UnimplementedError();
   }
-  
 }
