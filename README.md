@@ -43,4 +43,16 @@ Usecase နဲ့ Provider အပိုင်း ဆက်သွားလို�
 - components
 - testing without calling repository
 
+## 2024-05-10
+
+- select api call
+
+## API List
+
+- [ ] Select Articles
+- [ ] Select Article Detail
+- [ ] Select Categories
+- [ ] Select Category Detail
+- [ ] Select Articles by Category
+- [ ] Select Articles by Search
 
