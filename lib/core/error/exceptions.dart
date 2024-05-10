@@ -11,7 +11,7 @@ class ValidationException implements Exception {
   ValidationException({required this.errors});
 }
 
-class SingleMessageReturnException implements Exception {
+class SingleMessageException implements Exception {
   final String message;
-  SingleMessageReturnException({required this.message});
+  SingleMessageException({required this.message});
 }
