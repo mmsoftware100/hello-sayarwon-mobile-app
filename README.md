@@ -56,3 +56,11 @@ Usecase နဲ့ Provider အပိုင်း ဆက်သွားလို�
 - [ ] Select Articles by Category
 - [ ] Select Articles by Search
 
+
+
+### Serialization 
+
+```bash
+dart run build_runner build --delete-conflicting-outputs
+```
+- [ ] 

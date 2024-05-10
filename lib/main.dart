@@ -26,7 +26,7 @@ void main() async{
 
 
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
 
   );

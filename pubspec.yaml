@@ -50,6 +50,13 @@ dependencies:
   pull_to_refresh: ^2.0.0
 
 dev_dependencies:
+  # json serialization
+  json_annotation: ^4.4.0
+
+  # serialization
+  build_runner:
+  json_serializable:
+
   flutter_test:
     sdk: flutter
 
