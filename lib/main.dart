@@ -1,11 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/test/test_page.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
+import 'package:provider/provider.dart';
 
+import 'injection_container.dart' as di;
 import 'hellosayarwon/presentation/pages/home/home_page.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+  // runApp(const MyApp());
+
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
+
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) =>  ArticleProvider(
+            getArticles: di.sl(),
+            getArticle: di.sl(),
+            updateArticle: di.sl()
+        )),
+
+
+      ],
+      child: MyApp(),
+    ),
+
+  );
+
 }
 
 
