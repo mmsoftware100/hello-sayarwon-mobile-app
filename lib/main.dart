@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_detail_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/test/test_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
@@ -62,10 +63,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const MyHomePage(title: 'Hello Sayarwon'),
-      initialRoute: TestPage.routeName,
+      initialRoute: ArticleListPage.routeName,
       routes: {
         HomePage.routeName : (context) => const HomePage(),
         ArticleListPage.routeName : (context) => const ArticleListPage(),
+        ArticleDetailPage.routeName : (context) => const ArticleDetailPage(),
         TestPage.routeName : (context) => const TestPage(),
       },
     );

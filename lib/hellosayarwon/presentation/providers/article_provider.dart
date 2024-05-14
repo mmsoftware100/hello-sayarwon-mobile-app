@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hellosayarwon/core/status/pagination.dart';
@@ -57,6 +59,11 @@ class ArticleProvider extends ChangeNotifier {
   DataStatus articlesBySearchDataStatus = DataStatus.idle;
   SingleMessageFailure articlesBySearchSingleMessageFailure = SingleMessageFailure(message: "");
 
+  // supplymentary methods
+  void setArticleDetail(Article articleDetail){
+    article = articleDetail;
+    notifyListeners();
+  }
 
   // main methods
   Future<bool> getArticlesPlz( {required GetArticlesPara getArticlesPara}) async {
@@ -167,4 +174,25 @@ class ArticleProvider extends ChangeNotifier {
 
   // life cycle methods (helpers) data တစ်ခုရဲ့ Life Cycle အပြည့်ဖြစ်အောင် ကူညီပေးမယ့် methods တွေ။
   // လောလောဆယ် လိုသလောက်ပဲ အရင်ရေးထားမယ်။ Presentation ဘက်ကို သွားမယ်။
+
+  List<Article> getRandomArticles(){
+    // Create an instance of Random class
+    Random random = Random();
+
+    // Create an empty list to store random elements
+    List<Article> randomElements = [];
+
+    // Get 3 random elements
+    for (int i = 0; i < 5; i++) {
+      // Get a random index
+      int randomIndex = random.nextInt(articles.length);
+
+      // Get the random item from the list
+      Article article = articles[randomIndex];
+
+      // Add the random item to the list of random elements
+      randomElements.add(article);
+    }
+    return randomElements;
+  }
 }

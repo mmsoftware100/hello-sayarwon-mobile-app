@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_detail_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../domain/entities/article.dart';
+import '../../../domain/entities/paras/get_article_para.dart';
 import '../../../domain/entities/paras/get_articles_para.dart';
 
 // လောလောဆယ် ရိုးရိုးရှင်းရှင်း ပဲ လုပ်ဉီးမယ်။
@@ -20,7 +22,7 @@ class ArticleListPage extends StatefulWidget {
 
 class _ArticleListPageState extends State<ArticleListPage> {
 
-  final RefreshController _refreshController = RefreshController(initialRefresh:  false);
+  final RefreshController _refreshController = RefreshController(initialRefresh:  true);
 
 
   @override
@@ -45,6 +47,8 @@ class _ArticleListPageState extends State<ArticleListPage> {
     GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
     bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
     print("TestPage->_refreshArticles status $status");
+    _refreshController.refreshCompleted();
+
 
 
     //int pageNo = 1;
@@ -127,22 +131,39 @@ class _ArticleListPageState extends State<ArticleListPage> {
   }
 
   Widget _articleCard({required Article article}){
-    return Container(
-      height: 50,
-      margin: const EdgeInsets.all(8.0),
-      decoration:   BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.circular(8.0)
-      ),
-      child:  Row(
-        children: [
-          CachedNetworkImage(
-            imageUrl: article.thumbnail,
-            progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-          ),
-          Center(child: Text(article.title),)
-        ],
+    return InkWell(
+      onTap: (){
+        // set article detail and go to detail page
+        Provider.of<ArticleProvider>(context, listen: false).setArticleDetail(article);
+        String accessToken = "";
+        String permalink = article.permalink;
+        GetArticlePara getArticlePara = GetArticlePara(accessToken: accessToken, permalink: permalink);
+        Provider.of<ArticleProvider>(context, listen: false).getArticlePlz(getArticlePara: getArticlePara);
+        Navigator.pushNamed(context, ArticleDetailPage.routeName);
+      },
+      child: Container(
+        height: 50,
+        margin: const EdgeInsets.all(8.0),
+        decoration:   BoxDecoration(
+          color: Colors.green,
+          borderRadius: BorderRadius.circular(8.0)
+        ),
+        child:  Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: CachedNetworkImage(
+                imageUrl: article.thumbnail,
+                progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
+            ),
+            Expanded(
+                flex: 3,
+                child: Center(child: Text(article.title),)
+            )
+          ],
+        ),
       ),
     );
   }

@@ -12,12 +12,20 @@ https://documenter.getpostman.com/view/6000182/2sA3BuWp3R
 
 - [x] Refresh article
 - [x] Load more articles
-- [ ] Article detail
+- [x] Article detail
 
 
 Serialization မှန်အောင် လုပ်ရမလိမ့်မယ်။
 
 Refresh က စကြတာပေါ့။
+
+### UI
+
+article detail page မှာ loading ပြရန်။ 
+
+Set Detail မှာ api call ပါ ခေါ်ရမယ်။
+
+description ကို html render နဲ့ ချပြရမလို ဖြစ်နေပြီ။
 
 
 ## ဘယ်က စကြမလဲ?

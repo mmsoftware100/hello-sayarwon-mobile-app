@@ -64,7 +64,7 @@ class ArticleModel {
         id: id,
         permalink: permalink,
         title: title,
-        description: description,
+        description: removeHtmlTags(description),
         thumbnail: thumbnail,
         categoryId: categoryId,
         category: category?.toEntity() ?? Category.sample,
@@ -72,5 +72,11 @@ class ArticleModel {
         updatedAt: updatedAt
     );
   }
+
+  String removeHtmlTags(String htmlString) {
+    RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
+    return htmlString.replaceAll(exp, '');
+  }
+
 }
 
