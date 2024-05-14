@@ -26,6 +26,10 @@ class _TestPageState extends State<TestPage> {
           ListTile(title: const Text("Refresh Articles"), onTap: _refreshArticles, ),
           ListTile(title: const Text("Load More Articles"), onTap: _loadMoreArticles, ),
           ListTile(title: const Text("Article Detail"), onTap: _articleDetail, ),
+          //
+          Divider(),
+          ListTile(title: const Text("Select category list"), onTap: _refreshArticles, ),
+
         ],
       ),
     );
@@ -62,5 +66,15 @@ class _TestPageState extends State<TestPage> {
     GetArticlePara getArticlePara = GetArticlePara(accessToken: accessToken, permalink: permalink);
     bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlePlz(getArticlePara: getArticlePara);
     print("TestPage->_articleDetail status $status");
+  }
+  Future<void> _selectCategoryList() async{
+    print("TestPage->_selectCategoryList");
+    String accessToken = "";
+    String query = "";
+    int categoryId = 0;
+    int page = 1;
+    GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
+    bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
+    print("TestPage->_refreshArticles status $status");
   }
 }

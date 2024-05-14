@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const MyHomePage(title: 'Hello Sayarwon'),
-      initialRoute: ArticleListPage.routeName,
+      initialRoute: TestPage.routeName,
       routes: {
         HomePage.routeName : (context) => const HomePage(),
         ArticleListPage.routeName : (context) => const ArticleListPage(),
