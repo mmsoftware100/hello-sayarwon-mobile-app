@@ -39,7 +39,15 @@ class _TestPageState extends State<TestPage> {
     print("TestPage->_refreshArticles status $status");
   }
   Future<void> _loadMoreArticles() async{
+    print("TestPage->_loadMoreArticles");
+    String accessToken = "";
+    String query = "";
+    int categoryId = 0;
+    int page = Provider.of<ArticleProvider>(context, listen: false).articlesPagination.currentPage;
 
+    GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
+    bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
+    print("TestPage->_refreshArticles status $status");
   }
   Future<void> _articleDetail() async{
 

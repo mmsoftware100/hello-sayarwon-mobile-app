@@ -63,6 +63,9 @@ class ArticleProvider extends ChangeNotifier {
     // before phase
     // update status
     articlesDataStatus = DataStatus.loading;
+    if(getArticlesPara.page == 1){
+      articles.clear();
+    }
     notifyListeners();
 
     // doing business using use case
@@ -84,9 +87,12 @@ class ArticleProvider extends ChangeNotifier {
       return false;
     }, (articlesFromServer) {
       // success phase
+      print("get articles from server ");
+      print(articlesFromServer.length);
       articlesDataStatus = DataStatus.data;
       articles.addAll(articlesFromServer);
-      articlesPagination.currentPage++;
+      print(articles.length);
+      articlesPagination.currentPage = getArticlesPara.page + 1;
       notifyListeners();
       return true;
     });
