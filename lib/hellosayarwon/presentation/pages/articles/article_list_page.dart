@@ -1,5 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+import '../../../domain/entities/article.dart';
+import '../../../domain/entities/paras/get_articles_para.dart';
 
 // လောလောဆယ် ရိုးရိုးရှင်းရှင်း ပဲ လုပ်ဉီးမယ်။
 // main listing ဆိုပါတော့။
@@ -31,15 +37,37 @@ class _ArticleListPageState extends State<ArticleListPage> {
   void _onRefresh() async{
     // monitor network fetch
 
-    int pageNo = 1;
+    print("TestPage->_refreshArticles");
+    String accessToken = "";
+    String query = "";
+    int categoryId = 0;
+    int page = 1;
+    GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
+    bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
+    print("TestPage->_refreshArticles status $status");
+
+
+    //int pageNo = 1;
     //int categoryId = Provider.of<ImirrorProvider>(context, listen: false).category.id; // 0 for all and others for other
     //await Provider.of<ImirrorProvider>(context,listen: false).selectArticlePlz(accessToken: "accessToken", pageNo: pageNo, projectId: projectId,query: "", categoryId: categoryId);
-    await Future.delayed(const Duration(milliseconds: 5000));
+    //await Future.delayed(const Duration(milliseconds: 5000));
     // if failed,use refreshFailed()
-    _refreshController.refreshCompleted();
+    //_refreshController.refreshCompleted();
   }
 
   void _onLoading() async{
+    print("TestPage->_loadMoreArticles");
+    String accessToken = "";
+    String query = "";
+    int categoryId = 0;
+    int page = Provider.of<ArticleProvider>(context, listen: false).articlesPagination.currentPage;
+
+    GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
+    bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
+    print("TestPage->_refreshArticles status $status");
+    _refreshController.loadComplete();
+
+
     // ဘယ် Page ကို ယူမှာလဲ ဆိုတာ ပြဿနာ ဖြစ်ပြီ။
     // category id zero ဆိုရင် main pagination ကို သုံးပြီး
     // category id က > 0 ဆိုရင် article list for category က pagination ကို သုံးမယ်။
@@ -61,9 +89,9 @@ class _ArticleListPageState extends State<ArticleListPage> {
     }
     await Provider.of<ImirrorProvider>(context,listen: false).selectArticlePlz(accessToken: "accessToken", pageNo: pageNo, query: "", projectId: projectId, categoryId: categoryId);
     */
-    await Future.delayed(const Duration(milliseconds: 5000));
+    //await Future.delayed(const Duration(milliseconds: 5000));
 
-    _refreshController.loadComplete();
+
   }
 
 
@@ -82,23 +110,23 @@ class _ArticleListPageState extends State<ArticleListPage> {
       onRefresh: _onRefresh,
       onLoading: _onLoading,
       child: _articleList(
-        //articleList: widget.articleList, //  Provider.of<ImirrorProvider>(context, listen: true).articleList,
+        articleList: Provider.of<ArticleProvider>(context, listen: true).articles,
         //dataStatus: widget.dataStatus, //  Provider.of<ImirrorProvider>(context, listen: true).articleStatus,
         //pagination: widget.pagination, //  Provider.of<ImirrorProvider>(context, listen: true).paginationEntity
       ),
     );
   }
 
-  Widget _articleList(){
+  Widget _articleList({required List<Article> articleList}){
     // should return listview or column ?
     return ListView.separated(
-        itemBuilder: (context, index) => _articleCard(),
+        itemBuilder: (context, index) => _articleCard(article: articleList[index]),
         separatorBuilder: (context, index) => Container(),
-        itemCount: 20
+        itemCount: articleList.length
     );
   }
 
-  Widget _articleCard(){
+  Widget _articleCard({required Article article}){
     return Container(
       height: 50,
       margin: const EdgeInsets.all(8.0),
@@ -106,7 +134,16 @@ class _ArticleListPageState extends State<ArticleListPage> {
         color: Colors.green,
         borderRadius: BorderRadius.circular(8.0)
       ),
-      child: const Center(child: Text("Hello World"),),
+      child:  Row(
+        children: [
+          CachedNetworkImage(
+            imageUrl: article.thumbnail,
+            progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          ),
+          Center(child: Text(article.title),)
+        ],
+      ),
     );
   }
 }

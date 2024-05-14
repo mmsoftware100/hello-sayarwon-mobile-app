@@ -51,6 +51,7 @@ dependencies:
 
   # Http
   dio: ^4.0.4
+  cached_network_image: ^3.3.1
 
 dev_dependencies:
   # json serialization

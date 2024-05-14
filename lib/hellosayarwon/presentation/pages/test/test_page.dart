@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_article_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_articles_para.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -21,12 +22,17 @@ class _TestPageState extends State<TestPage> {
       ),
       body: ListView(
         children: [
+          ListTile(title: const Text("Go To Listing"), onTap: _goToListing, ),
           ListTile(title: const Text("Refresh Articles"), onTap: _refreshArticles, ),
           ListTile(title: const Text("Load More Articles"), onTap: _loadMoreArticles, ),
           ListTile(title: const Text("Article Detail"), onTap: _articleDetail, ),
         ],
       ),
     );
+  }
+
+  void _goToListing(){
+    Navigator.pushNamed(context, ArticleListPage.routeName);
   }
 
   Future<void> _refreshArticles() async{
