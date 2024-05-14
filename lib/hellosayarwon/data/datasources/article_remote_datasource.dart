@@ -45,7 +45,7 @@ class ArticleRemoteDatasourceImpl implements ArticleRemoteDatasource {
           data: map,
           bearerToken: getArticlesPara.accessToken
       );
-      List<dynamic> data = response['data'];
+      List<dynamic> data = response['data']['posts'];
       // Serialize Here
       List<Article> articles = [];
       for (int i = 0; i < data.length; i++) {

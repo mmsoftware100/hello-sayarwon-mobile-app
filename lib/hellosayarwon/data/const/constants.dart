@@ -1,6 +1,7 @@
 
-const String backendApiServer = "https://imirror.mmsoftware100.com";
-const String apiVersion = '$backendApiServer/api/v1';
+const String backendApiServer = "https://wp.hellosayarwon.com"; // /wp-json/api/articles?page=1"; //  "https://imirror.mmsoftware100.com";
+
+const String apiVersion = '$backendApiServer/wp-json/api';
 const String loginEndpoint = '$apiVersion/login';
 const String meEndpoint = '$apiVersion/me';
 const String userRegisterEndpoint = '$apiVersion/register';
