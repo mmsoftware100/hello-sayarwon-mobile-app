@@ -28,7 +28,7 @@ class ArticleRemoteDatasourceImpl implements ArticleRemoteDatasource {
           data: {},
           bearerToken: getArticlePara.accessToken
       );
-      var data = response['data'];
+      var data = response['data']['post'];
       return ArticleModel.fromJson(data).toEntity();
     } catch (e) {
       print(e.runtimeType);

@@ -10,8 +10,8 @@ https://documenter.getpostman.com/view/6000182/2sA3BuWp3R
 
 ## 2024-05-14 Test Pages က စမ်းကြမယ်။
 
-- [ ] Refresh article
-- [ ] Load more articles
+- [x] Refresh article
+- [x] Load more articles
 - [ ] Article detail
 
 

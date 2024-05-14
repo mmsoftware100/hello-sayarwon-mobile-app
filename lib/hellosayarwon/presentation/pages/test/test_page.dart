@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_article_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_articles_para.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
 import 'package:provider/provider.dart';
@@ -50,6 +51,10 @@ class _TestPageState extends State<TestPage> {
     print("TestPage->_refreshArticles status $status");
   }
   Future<void> _articleDetail() async{
-
+    String accessToken = "";
+    String permalink = Provider.of<ArticleProvider>(context, listen: false).articles.first.permalink;
+    GetArticlePara getArticlePara = GetArticlePara(accessToken: accessToken, permalink: permalink);
+    bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlePlz(getArticlePara: getArticlePara);
+    print("TestPage->_articleDetail status $status");
   }
 }
