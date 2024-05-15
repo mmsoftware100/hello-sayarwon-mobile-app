@@ -4,6 +4,7 @@ import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_articles_p
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_categories_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_category_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/toggle_favourite_para.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_by_favourite_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_search_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/categories/category_list_page.dart';
@@ -46,6 +47,7 @@ class _TestPageState extends State<TestPage> {
           //
           Divider(),
           ListTile(title: const Text("Toggle favourite"), onTap: _toggleFavourite, ),
+          ListTile(title: const Text("Go to Favourite Listing"), onTap: _goToFavouriteList, ),
 
         ],
       ),
@@ -60,6 +62,9 @@ class _TestPageState extends State<TestPage> {
   }
   void _goToSearch(){
     Navigator.pushNamed(context, ArticleSearchPage.routeName);
+  }
+  void _goToFavouriteList(){
+    Navigator.pushNamed(context, ArticleListByFavouritePage.routeName);
   }
 
   Future<void> _refreshArticles() async{

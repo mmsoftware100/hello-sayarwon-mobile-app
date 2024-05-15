@@ -38,8 +38,15 @@ class ArticleProvider extends ChangeNotifier {
   List<Article> articles = [];
   Pagination articlesPagination = Pagination.sample;
   DataStatus articlesDataStatus = DataStatus.idle;
-  SingleMessageFailure articlesSingleMessageFailure =
-      SingleMessageFailure(message: "");
+  SingleMessageFailure articlesSingleMessageFailure = SingleMessageFailure(message: "");
+
+
+  /// for favourite list
+  List<Article> articlesByFavourite = [];
+  Pagination articlesByFavouritePagination = Pagination.sample;
+  DataStatus articlesByFavouriteDataStatus = DataStatus.idle;
+  SingleMessageFailure articlesByFavouriteSingleMessageFailure = SingleMessageFailure(message: "");
+
 
   /// Data Detail
   /// for detail page
