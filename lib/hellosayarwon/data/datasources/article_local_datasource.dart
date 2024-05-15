@@ -96,6 +96,6 @@ class ArticleLocalDatasourceImpl implements ArticleLocalDatasource{
       throw SingleMessageException(message: e.toString());
     }
   }
-  
+
 
 }

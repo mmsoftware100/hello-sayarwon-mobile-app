@@ -75,6 +75,7 @@ class ArticleModel {
         description: removeHtmlTags(description),
         thumbnail: thumbnail,
         categoryId: categoryId,
+        favourite: favourite,
         category: category?.toEntity() ?? Category.sample,
         createdAt: createdAt,
         updatedAt: updatedAt
@@ -104,6 +105,25 @@ class ArticleModel {
     }
     return json;
   }
+
+
+  // all serialization rules rely HERE
+  factory ArticleModel.fromEntity(Article article){
+    return ArticleModel(
+        id: article.id,
+        title: article.title,
+        description: article.description,
+        thumbnail: article.thumbnail,
+        categoryId: article.categoryId,
+        favourite: article.favourite,
+        category: CategoryModel.fromJson({}),  // TODO: need to convert Category Entity to Category Model
+        createdAt: article.createdAt,
+        updatedAt: article.updatedAt,
+        permalink: article.permalink,
+    );
+  }
+
+
 
 
 }

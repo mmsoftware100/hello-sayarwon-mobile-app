@@ -108,6 +108,13 @@ insert / update ပေါ့။
 - [ ] Article Listing by Category
 
 
+*** App အတွင်းပိုင်းမှာ ကိုယ်ပိုင် Data Structure တွေနဲ့ပဲ အလုပ်လုပ်မယ် ***
+
+Entity,
+Model
+JSON Map
+
+ဒီ (၃) မျိုး။
 
 
 Serialization မှန်အောင် လုပ်ရမလိမ့်မယ်။
