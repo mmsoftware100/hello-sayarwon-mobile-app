@@ -35,15 +35,29 @@ class ArticleLocalDatasourceImpl implements ArticleLocalDatasource{
 
   @override
   Future<Article> getArticle({required int id}) async{
+    print("ArticleLocalDatasource->getArticle $id");
     try{
       // success case
       dynamic response = await databaseInterface.getDetail(tableName: articleTableName, id: id, query: {});
       if(response == null){
         throw NoDataException();
       }
-      return ArticleModel.fromJson(response).toEntity();
+      print("ArticleLocalDatasource->getArticle response");
+      print(response);
+      print(response.runtimeType);
+      // type '_Map<dynamic, dynamic>' is not a subtype of type 'Map<String, dynamic>'
+      // ဒါက from json နဲ့ မရတော့ပဲ။ ရိုးရိုး model လို ဖြစ်နေပြီ။
+      // database က ထွက်လာတာက model key တွေ အတိုင်းပဲ။
+      // from db လို့ ရေးရမလိုပဲ။
+
+      ArticleModel articleModel = ArticleModel.fromDb(response);
+      print("successfully converted from db to article");
+      print(articleModel.title);
+      print(articleModel.id);
+      return articleModel.toEntity(); // ArticleModel.fromJson(response).toEntity();
     }
     catch(e, stackTrace){
+      print("ArticleLocalDatasource->getArticle serialize exp");
       print(e.runtimeType);
       print(e);
       print(stackTrace);
@@ -93,8 +107,9 @@ class ArticleLocalDatasourceImpl implements ArticleLocalDatasource{
   @override
   Future<Article> updateArticle({required int id, required ArticleModel article}) async{
     try{
+      print("ArticleLocalDatasource->updateArticle $id ${article.title} ${article.favourite}");
       dynamic response = await databaseInterface.update(tableName: articleTableName, data: article.toDbStore(), id: id); // update
-      return ArticleModel.fromJson(response).toEntity();
+      return ArticleModel.fromDb(response).toEntity();
     }
     catch(e, stackTrace){
       print(e.runtimeType);

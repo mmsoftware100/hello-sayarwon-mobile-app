@@ -41,7 +41,11 @@ class DatabaseInterfaceImpl implements DatabaseInterface{
 
         print(maps);
         if(maps.isNotEmpty){
-          return maps.first;
+          // this is query row
+          Map<String, dynamic> map = {};
+          maps.first.forEach((key, value) => map[key.toString()] = value);
+
+          return map;
         }
         else{
           throw NoDataException();

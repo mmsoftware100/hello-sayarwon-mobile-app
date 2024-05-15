@@ -94,6 +94,7 @@ class ArticleModel {
       'title' : title,
       'description' : description,
       'thumbnail' : thumbnail,
+      'permalink' : permalink,
       'category_id' : categoryId,
       'favourite' : favourite,
       'created_at' : createdAt,
@@ -106,6 +107,30 @@ class ArticleModel {
     }
     return json;
   }
+
+  factory ArticleModel.fromDb(Map<String, dynamic> json) {
+    print("ArticleModel->fromDB");
+    print("${json["id"]} , ${json["permalink"]}, ${json["title"]}");
+
+    ArticleModel article =  ArticleModel(
+        id: json["id"],
+        permalink: json["permalink"],
+        title: json["title"],
+        description: json["description"],
+        thumbnail: json["thumbnail"],
+        categoryId: json["category_id"],
+        category: CategoryModel.fromJson({}),
+        favourite: json["favourite"],
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"]
+    );
+
+    print("id is ${article.id}");
+    print("title is ${article.title}");
+
+    return article;
+  }
+
 
 
   // all serialization rules rely HERE

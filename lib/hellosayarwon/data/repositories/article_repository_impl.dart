@@ -104,6 +104,8 @@ class ArticleRepositoryImpl implements ArticleRepository{
     try{
       try{
         Article articleDb = await articleLocalDatasource.getArticle(id: toggleFavouritePara.article.id);
+        // why ZERO
+        print("ArticleRepositoryImpl->toggleFavourite ${toggleFavouritePara.article.id}  is ${articleDb.id}");
         // maintain local favourite property
         print("ArticleRepositoryImpl->toggleFavourite from ${articleDb.favourite} to ${articleDb.favourite == 1 ? 0 : 1 }");
         articleDb.favourite = articleDb.favourite == 1 ? 0 : 1 ;

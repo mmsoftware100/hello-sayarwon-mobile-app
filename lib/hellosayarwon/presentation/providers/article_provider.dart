@@ -216,6 +216,10 @@ class ArticleProvider extends ChangeNotifier {
       return false;
     }, (articleUpdate) {
       // success phase
+      print("ArticleProvider->toggleFavouritePlz success");
+      print(articleUpdate.title);
+      print(articleUpdate.description);
+
       articleDataStatus = DataStatus.data;
       print("articleUpdate is ${articleUpdate.favourite}");
       article = articleUpdate;

@@ -141,6 +141,11 @@ api က ပြန်ခေါ်လိုက်ရင်လည်း main tain �
 Provider ကို debug မှာ ကြည့်မရတာ ခက်။
 
 
+article က ပြန်လာတာ က empty ဖြစ်နေတယ်။
+select လုပ်တာ / update လုပ်တဲ့ data က ဘာဖြစ်နေလို့လဲ?
+
+
+
 Serialization မှန်အောင် လုပ်ရမလိမ့်မယ်။
 
 Refresh က စကြတာပေါ့။

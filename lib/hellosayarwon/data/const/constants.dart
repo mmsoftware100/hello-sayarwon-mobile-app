@@ -23,6 +23,7 @@ String articleTableColumnId = "id";
 String articleTableColumnTitle = "title";
 String articleTableColumnDescription = "description";
 String articleTableColumnThumbnail = "thumbnail";
+String articleTableColumnPermalink = "permalink";
 String articleTableColumnCategoryId = "category_id";
 String articleTableColumnFavourite = "favourite";
 String articleTableColumnCreatedAt = "created_at";
@@ -36,6 +37,7 @@ String createArticleSql = '''
         $articleTableColumnTitle TEXT,
         $articleTableColumnDescription TEXT,
         $articleTableColumnThumbnail TEXT,
+        $articleTableColumnPermalink TEXT,
         $articleTableColumnCategoryId INTEGER,
         $articleTableColumnFavourite INTEGER,
         $articleTableColumnCreatedAt TEXT,
