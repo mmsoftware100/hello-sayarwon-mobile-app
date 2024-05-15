@@ -69,6 +69,20 @@ class ArticleRepositoryImpl implements ArticleRepository{
   @override
   Future<Either<Failure, List<Article>>> getArticles({required GetArticlesPara getArticlesPara}) async{
     try{
+
+      //
+      if(getArticlesPara.favourite){
+        try{
+          List<Article> articleList = await articleLocalDatasource.getArticleList(getArticlesPara: getArticlesPara);
+          return right(articleList);
+        }
+        catch(exp,stackTrace){
+          print("ArticleRepositoryImpl->getArticles");
+          print(exp);
+          print(stackTrace);
+          rethrow;
+        }
+      }
       List<Article> articleList = await articleRemoteDatasource.getArticles(getArticlesPara: getArticlesPara);
       return right(articleList);
     }

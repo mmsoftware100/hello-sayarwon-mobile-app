@@ -62,6 +62,18 @@ class DatabaseInterfaceImpl implements DatabaseInterface{
 
   @override
   Future getList({required String tableName, required Map<String, dynamic> query}) async{
+    // select all
+
+    if(query.isNotEmpty){
+      // List<Map> maps = [];
+      List<Map> maps = await db.query(tableName,
+        where: 'favourite = ?',
+        whereArgs:  [1]
+      );
+      return maps;
+    }
+
+
     try{
 
       List<Map> maps = await db.query(tableName,

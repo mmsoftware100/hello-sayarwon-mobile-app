@@ -4,12 +4,14 @@ class GetArticlesPara{
   final String query;
   final int categoryId;
   final int page;
+  final bool favourite;
 
   GetArticlesPara({
     required this.accessToken,
     required this.query,
     required this.categoryId,
-    required this.page
+    required this.page,
+    required this.favourite
   });
 
   Map<String, String> toJson(){

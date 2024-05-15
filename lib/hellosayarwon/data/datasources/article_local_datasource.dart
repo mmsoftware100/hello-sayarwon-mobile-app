@@ -3,6 +3,7 @@ import 'package:hellosayarwon/core/error/failures.dart';
 import 'package:hellosayarwon/hellosayarwon/data/models/article_model.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/article.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_article_para.dart';
+import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_articles_para.dart';
 import '../../../core/error/exceptions.dart';
 import '../const/constants.dart';
 import '../third_party/database_interface.dart';
@@ -12,7 +13,7 @@ abstract class ArticleLocalDatasource {
   Future<Article> updateArticle({required int id,required ArticleModel article});
   Future<Article> deleteArticle({required int id});
   Future<Article> getArticle({required int id});
-  Future<List<Article>> getArticleList({required GetArticlePara getArticlePara});
+  Future<List<Article>> getArticleList({required GetArticlesPara getArticlesPara});
 }
 
 
@@ -70,10 +71,14 @@ class ArticleLocalDatasourceImpl implements ArticleLocalDatasource{
   }
 
   @override
-  Future<List<Article>> getArticleList({required GetArticlePara getArticlePara}) async{
+  Future<List<Article>> getArticleList({required GetArticlesPara getArticlesPara}) async{
     try{
       // success case
-      dynamic response = await databaseInterface.getList(tableName: articleTableName, query: {}); // list of article maps
+      Map<String, dynamic> map = {};
+      if(getArticlesPara.favourite){
+        map["favourite"] = 1;
+      }
+      dynamic response = await databaseInterface.getList(tableName: articleTableName, query: map ); // list of article maps
       print("ArticleLocalDatasourceImpl->getArticleList response");
       print(response);
       List<Article> articleList = [];
