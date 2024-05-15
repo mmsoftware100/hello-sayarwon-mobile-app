@@ -1,5 +1,7 @@
 import 'package:hellosayarwon/hellosayarwon/data/const/constants.dart';
+import 'package:hellosayarwon/hellosayarwon/data/models/article_model.dart';
 
+import '../../domain/entities/article.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/entities/paras/get_categories_para.dart';
 import '../../domain/entities/paras/get_category_para.dart';
@@ -51,8 +53,22 @@ class CategoryRemoteDatasourceImpl implements CategoryRemoteDatasource{
           data: {},
           bearerToken: getCategoryPara.accessToken
       );
-      var data = response['data'];
-      return CategoryModel.fromJson(data).toEntity();
+      var data = response['data']['category'];
+      Category category =  CategoryModel.fromJson(data).toEntity();
+      try{
+        var explainersPosts = response['data']['explainers_posts'];
+        List<Article> articles = [];
+        for(int i=0; i < explainersPosts.length; i++){
+          Article article = ArticleModel.fromJson(explainersPosts[i]).toEntity();
+          articles.add(article);
+        }
+        category.articles = articles;
+      }catch (e, stackTrace) {
+        print("CategoryRemoteDatasource->getCategory explainersPost exp");
+        print(e);
+        print(stackTrace);
+      }
+      return category;
     } catch (e) {
       print(e.runtimeType);
       rethrow;

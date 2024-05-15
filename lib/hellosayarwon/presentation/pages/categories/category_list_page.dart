@@ -11,6 +11,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../domain/entities/article.dart';
 import '../../../domain/entities/paras/get_article_para.dart';
 import '../../../domain/entities/paras/get_articles_para.dart';
+import '../../../domain/entities/paras/get_categories_para.dart';
 import 'category_detail_page.dart';
 
 // လောလောဆယ် ရိုးရိုးရှင်းရှင်း ပဲ လုပ်ဉီးမယ်။
@@ -33,7 +34,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Article Listing"),
+        title: const Text("Category Listing"),
       ),
       body: _mainWidget(),
     );
@@ -43,14 +44,12 @@ class _CategoryListPageState extends State<CategoryListPage> {
   void _onRefresh() async{
     // monitor network fetch
 
-    print("TestPage->_refreshArticles");
+    print("CategoryListPage->_onRefresh");
     String accessToken = "";
-    String query = "";
-    int categoryId = 0;
     int page = 1;
-    GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
-    bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
-    print("TestPage->_refreshArticles status $status");
+    GetCategoriesPara getCategoriesPara = GetCategoriesPara(accessToken: accessToken, page: page);
+    bool status = await Provider.of<CategoryProvider>(context, listen: false).getCategoriesPlz(getCategoriesPara: getCategoriesPara);
+    print("CategoryListPage->_onRefresh status $status");
     _refreshController.refreshCompleted();
 
 
