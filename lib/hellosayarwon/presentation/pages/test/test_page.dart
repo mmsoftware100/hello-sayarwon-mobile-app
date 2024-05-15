@@ -4,6 +4,7 @@ import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_articles_p
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_categories_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_category_para.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/categories/category_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/category_provider.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,7 @@ class _TestPageState extends State<TestPage> {
           Divider(),
           ListTile(title: const Text("Select category list"), onTap: _selectCategoryList, ),
           ListTile(title: const Text("Select category detail"), onTap: _selectCategoryDetail, ),
+          ListTile(title: const Text("Go To Category Listing"), onTap: _goToCategoryListing, ),
 
         ],
       ),
@@ -41,6 +43,9 @@ class _TestPageState extends State<TestPage> {
 
   void _goToListing(){
     Navigator.pushNamed(context, ArticleListPage.routeName);
+  }
+  void _goToCategoryListing(){
+    Navigator.pushNamed(context, CategoryListPage.routeName);
   }
 
   Future<void> _refreshArticles() async{

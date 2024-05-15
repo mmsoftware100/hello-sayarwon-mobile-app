@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_detail_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/categories/category_detail_page.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/categories/category_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/test/test_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/category_provider.dart';
@@ -74,6 +76,8 @@ class MyApp extends StatelessWidget {
         ArticleListPage.routeName : (context) => const ArticleListPage(),
         ArticleDetailPage.routeName : (context) => const ArticleDetailPage(),
         TestPage.routeName : (context) => const TestPage(),
+        CategoryListPage.routeName : (context) => const CategoryListPage(),
+        CategoryDetailPage.routeName : (context) => const CategoryDetailPage(),
       },
     );
   }
