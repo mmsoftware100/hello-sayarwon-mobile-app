@@ -40,6 +40,22 @@ Listing တစ်ခုက မျိုးစုံကို တာဝန်ယ�
 
 အခုဆိုရင် pull to refresh ရဲ့ auto refresh က အနှောက်အယှက်ပေးနေပြီ။
 
+add to fav ထည့်ချင်ပြီ။
+
+Local Db က သိမ်းထားပေးမှ ရမယ်။
+
+Data Flow က ဒီလိုလာမယ်။
+Article Detail Page -> 
+article  တစ်ပုဒ်ကို fav လုပ်ချင်တယ် ပြောတယ်။
+
+Provider -> usecase က တဆင့် ပို့ပေးမယ်။ 
+Local Data Source အထိ ရောက်အောင်။
+
+Add to Fav နဲ့
+Remove from Fav နှစ်ခု ရှိမယ်။
+
+
+
 
 ## 2024-05-14 Test Pages က စမ်းကြမယ်။
 
