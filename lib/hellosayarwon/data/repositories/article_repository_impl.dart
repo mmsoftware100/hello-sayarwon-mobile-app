@@ -4,6 +4,7 @@ import 'package:hellosayarwon/hellosayarwon/data/datasources/article_remote_data
 import 'package:hellosayarwon/hellosayarwon/domain/entities/article.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_article_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_articles_para.dart';
+import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/toggle_favourite_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/update_article_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/repositories/article_repository.dart';
 
@@ -11,6 +12,7 @@ import '../../../core/error/exceptions.dart';
 
 class ArticleRepositoryImpl implements ArticleRepository{
   ArticleRemoteDatasource articleRemoteDatasource;
+  // local data source
 
   ArticleRepositoryImpl({
     required this.articleRemoteDatasource
@@ -57,6 +59,12 @@ class ArticleRepositoryImpl implements ArticleRepository{
       }
       return left(ServerFailure());
     }
+  }
+
+  @override
+  Future<Either<Failure, Article>> toggleFavourite({required ToggleFavouritePara toggleFavouritePara}) {
+    // TODO: implement toggleFavourite
+    throw UnimplementedError();
   }
 
 }
