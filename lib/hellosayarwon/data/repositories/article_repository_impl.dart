@@ -105,6 +105,7 @@ class ArticleRepositoryImpl implements ArticleRepository{
       try{
         Article articleDb = await articleLocalDatasource.getArticle(id: toggleFavouritePara.article.id);
         // maintain local favourite property
+        print("ArticleRepositoryImpl->toggleFavourite from ${articleDb.favourite} to ${articleDb.favourite == 1 ? 0 : 1 }");
         articleDb.favourite = articleDb.favourite == 1 ? 0 : 1 ;
         // update
         Article article = await articleLocalDatasource.updateArticle(id: articleDb.id, article: ArticleModel.fromEntity(articleDb));

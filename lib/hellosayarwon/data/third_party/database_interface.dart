@@ -1,6 +1,8 @@
 
 import 'package:sqflite/sqflite.dart';
 
+import '../../../core/error/exceptions.dart';
+
 abstract class DatabaseInterface {
   // will return JSON raw data?
   // yeah,  child class have to return JSON / MAP
@@ -29,18 +31,28 @@ class DatabaseInterfaceImpl implements DatabaseInterface{
 
   @override
   Future getDetail({required String tableName, required int id, required Map<String, dynamic> query}) async{
+    print("DatabaseInterface->getDetail $tableName for $id");
     try{
-      if(query.isNotEmpty){
+      if(query.isEmpty){
         List<Map> maps = await db.query(tableName,
             where: 'id = ?',
             whereArgs: [id]
         );
-        return maps.first;
+
+        print(maps);
+        if(maps.isNotEmpty){
+          return maps.first;
+        }
+        else{
+          throw NoDataException();
+        }
       }
+      throw NoDataException();
     }
     catch(exp,stackTrace){
       print(exp);
       print(stackTrace);
+      rethrow;
     }
   }
 

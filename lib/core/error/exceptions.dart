@@ -5,6 +5,7 @@ class SerializationException implements Exception {}
 
 class UnverifiedUserException implements Exception {}
 class NeedToLoginException implements Exception {}
+class NoDataException implements Exception {}
 
 class ValidationException implements Exception {
   final Map<String,List<String>> errors;

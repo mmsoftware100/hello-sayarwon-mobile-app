@@ -27,7 +27,8 @@ void main() async{
         ChangeNotifierProvider(create: (_) =>  ArticleProvider(
             getArticles: di.sl(),
             getArticle: di.sl(),
-            updateArticle: di.sl()
+            updateArticle: di.sl(),
+            toggleFavourite: di.sl()
         )),
         ChangeNotifierProvider(create: (_) =>  CategoryProvider(
             getCategory: di.sl(),

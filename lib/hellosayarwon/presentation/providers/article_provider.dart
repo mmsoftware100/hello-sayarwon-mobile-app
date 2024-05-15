@@ -8,24 +8,29 @@ import 'package:hellosayarwon/hellosayarwon/domain/entities/article.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/category.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_article_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_articles_para.dart';
+import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/toggle_favourite_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/update_article_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/usecases/articles/update_article.dart';
 
 import '../../../core/error/failures.dart';
 import '../../domain/usecases/articles/get_article.dart';
 import '../../domain/usecases/articles/get_articles.dart';
+import '../../domain/usecases/articles/toggle_favourite.dart';
 
 class ArticleProvider extends ChangeNotifier {
   // use case list
   GetArticles getArticles;
   GetArticle getArticle;
   UpdateArticle updateArticle;
+  ToggleFavourite toggleFavourite;
 
   // constructor
-  ArticleProvider(
-      {required this.getArticles,
-      required this.getArticle,
-      required this.updateArticle});
+  ArticleProvider({
+    required this.getArticles,
+    required this.getArticle,
+    required this.updateArticle,
+    required this.toggleFavourite
+  });
 
   // Data repo
   /// Data List
@@ -180,6 +185,41 @@ class ArticleProvider extends ChangeNotifier {
       article = articleUpdate;
       notifyListeners();
 
+      return true;
+    });
+  }
+
+
+  Future<bool> toggleFavouritePlz( {required ToggleFavouritePara toggleFavouritePara}) async {
+    print("ArticleProvider->toggleFavouritePlz");
+    print("${toggleFavouritePara.article.id} to ${toggleFavouritePara.article.favourite}");
+
+    // before phase
+    // update status
+    articleDataStatus = DataStatus.loading;
+    notifyListeners();
+
+    // doing business using use case
+    final Either<Failure, Article> articleEither = await toggleFavourite(toggleFavouritePara);
+    return articleEither.fold((failure) {
+      // failure phase
+      articleDataStatus = DataStatus.error;
+      if(failure is SingleMessageFailure){
+        articleSingleMessageFailure = failure;
+      }
+      // တစ်ခြား exception တွေ ဆိုရင်တော့ Something went wrong လို့ပဲ မှတ်လိုက်မလား
+      else{
+        articleSingleMessageFailure = SingleMessageFailure(message: "Something went wrong @p");
+      }
+      notifyListeners();
+
+      return false;
+    }, (articleUpdate) {
+      // success phase
+      articleDataStatus = DataStatus.data;
+      print("articleUpdate is ${articleUpdate.favourite}");
+      article = articleUpdate;
+      notifyListeners();
       return true;
     });
   }

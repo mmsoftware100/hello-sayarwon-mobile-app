@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hellosayarwon/core/status/status.dart';
+import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/toggle_favourite_para.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -22,8 +23,22 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Article Detail"),
+        actions: [
+          _favouriteButton(Provider.of<ArticleProvider>(context, listen: true).article)
+        ],
       ),
       body: _mainWidget(Provider.of<ArticleProvider>(context, listen: true).article),
+    );
+  }
+
+  Widget _favouriteButton(Article article){
+    return IconButton(
+        onPressed: (){
+          String accessToken = "";
+          ToggleFavouritePara toggleFavouritePara = ToggleFavouritePara(accessToken: accessToken, article: article);
+          Provider.of<ArticleProvider>(context, listen: false).toggleFavouritePlz(toggleFavouritePara: toggleFavouritePara);
+        },
+        icon: Icon(article.favourite == 1 ? Icons.favorite :  Icons.favorite_outline_rounded )
     );
   }
 

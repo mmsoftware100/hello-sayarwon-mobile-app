@@ -38,12 +38,19 @@ class ArticleLocalDatasourceImpl implements ArticleLocalDatasource{
     try{
       // success case
       dynamic response = await databaseInterface.getDetail(tableName: articleTableName, id: id, query: {});
+      if(response == null){
+        throw NoDataException();
+      }
       return ArticleModel.fromJson(response).toEntity();
     }
     catch(e, stackTrace){
       print(e.runtimeType);
+      print(e);
       print(stackTrace);
       // TODO: should catch db exception
+      if(e is NoDataException){
+        throw SingleMessageException(message: "No data found");
+      }
       throw SingleMessageException(message: e.toString());
     }
   }
@@ -96,6 +103,4 @@ class ArticleLocalDatasourceImpl implements ArticleLocalDatasource{
       throw SingleMessageException(message: e.toString());
     }
   }
-
-
 }

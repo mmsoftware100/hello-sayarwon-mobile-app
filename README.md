@@ -103,9 +103,21 @@ insert / update ပေါ့။
 - [x] Load more articles
 - [x] Article detail
 
-- [ ] Category Listing
-- [ ] Category Detatil
-- [ ] Article Listing by Category
+- [x] Category Listing
+- [x] Category Detatil
+- [x] Article Listing by Category
+
+- [ ] Add to favourite
+- [ ] Remove from favourite
+- [ ] Favourite List
+
+- [ ] Select local list
+
+စစ်ရမှာက 
+
+store အဆင်ပြေသွားသလား
+
+getArticles လုပ်တဲ့အချိန်မှာ။
 
 
 *** App အတွင်းပိုင်းမှာ ကိုယ်ပိုင် Data Structure တွေနဲ့ပဲ အလုပ်လုပ်မယ် ***

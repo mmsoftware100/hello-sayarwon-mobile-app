@@ -11,6 +11,7 @@ import 'package:hellosayarwon/hellosayarwon/domain/repositories/article_reposito
 import 'package:hellosayarwon/hellosayarwon/domain/repositories/category_repository.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/usecases/articles/get_article.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/usecases/articles/get_articles.dart';
+import 'package:hellosayarwon/hellosayarwon/domain/usecases/articles/toggle_favourite.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/usecases/articles/update_article.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/usecases/categories/get_categories.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/usecases/categories/get_category.dart';
@@ -19,6 +20,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'hellosayarwon/data/const/constants.dart';
+import 'hellosayarwon/data/third_party/database_interface.dart';
 import 'hellosayarwon/data/third_party/network_interface.dart';
 
 final sl = GetIt.instance;
@@ -31,7 +33,8 @@ Future<void> init() async {
   sl.registerFactory( () => ArticleProvider(
       getArticles: sl(),
       getArticle: sl(),
-      updateArticle: sl()
+      updateArticle: sl(),
+      toggleFavourite: sl()
   ));
 
 
@@ -39,6 +42,7 @@ Future<void> init() async {
   sl.registerLazySingleton<GetArticles>(() => GetArticles(articleRepository: sl()));
   sl.registerLazySingleton<GetArticle>(() => GetArticle(articleRepository: sl()));
   sl.registerLazySingleton<UpdateArticle>(() => UpdateArticle(articleRepository: sl()));
+  sl.registerLazySingleton<ToggleFavourite>(() => ToggleFavourite(articleRepository: sl()));
 
   sl.registerLazySingleton<GetCategories>(() => GetCategories(categoryRepository: sl()));
   sl.registerLazySingleton<GetCategory>(() => GetCategory(categoryRepository: sl()));
@@ -57,7 +61,9 @@ Future<void> init() async {
 
   ///Network
   sl.registerLazySingleton<NetworkInterface>(() => NetworkInterfaceImpl(client: sl()));
-  // sl.registerLazySingleton<DatabaseInterface>(() => DatabaseInterfaceImpl(db: sl()));
+
+  // Database
+  sl.registerLazySingleton<DatabaseInterface>(() => DatabaseInterfaceImpl(db: sl()));
 
 
   // Final Implementations

@@ -95,6 +95,7 @@ class ArticleModel {
       'description' : description,
       'thumbnail' : thumbnail,
       'category_id' : categoryId,
+      'favourite' : favourite,
       'created_at' : createdAt,
       'updated_at' : updatedAt,
       // how about Contact Data List ?

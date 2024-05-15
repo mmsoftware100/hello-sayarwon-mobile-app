@@ -3,12 +3,15 @@ import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_article_pa
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_articles_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_categories_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_category_para.dart';
+import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/toggle_favourite_para.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_search_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/categories/category_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/category_provider.dart';
 import 'package:provider/provider.dart';
+
+import '../../../domain/entities/article.dart';
 
 class TestPage extends StatefulWidget {
   static const String routeName = "/TestPage";
@@ -40,6 +43,9 @@ class _TestPageState extends State<TestPage> {
           Divider(),
           ListTile(title: const Text("Search Articles"), onTap: _searchArticles, ),
           ListTile(title: const Text("Go To Search"), onTap: _goToSearch, ),
+          //
+          Divider(),
+          ListTile(title: const Text("Toggle favourite"), onTap: _toggleFavourite, ),
 
         ],
       ),
@@ -100,8 +106,6 @@ class _TestPageState extends State<TestPage> {
     bool status = await Provider.of<CategoryProvider>(context, listen: false).getCategoryPlz(getCategoryPara: getCategoryPara);
     print("TestPage->_selectCategoryList status $status");
   }
-
-
   Future<void> _searchArticles() async{
     print("TestPage->_searchArticles");
     String accessToken = "";
@@ -113,4 +117,11 @@ class _TestPageState extends State<TestPage> {
     print("TestPage->_searchArticles status $status");
   }
 
+  Future<void> _toggleFavourite() async{
+    String accessToken = "";
+    Article article = Provider.of<ArticleProvider>(context, listen: false).articles.first;
+    ToggleFavouritePara toggleFavouritePara = ToggleFavouritePara(accessToken: accessToken, article: article);
+    bool status = await Provider.of<ArticleProvider>(context, listen: false).toggleFavouritePlz(toggleFavouritePara: toggleFavouritePara);
+    print("TestPage->_toggleFavourite status $status");
+  }
 }
