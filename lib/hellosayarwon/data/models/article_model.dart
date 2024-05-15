@@ -31,6 +31,11 @@ class ArticleModel {
   @JsonKey(name: 'name' , defaultValue: 0)
   int categoryId;
 
+
+  // for local status
+  @JsonKey(name: 'favourite' , defaultValue: 0)
+  int favourite;
+
   @JsonKey(name: 'users' , defaultValue: null)
   CategoryModel? category;
 
@@ -52,6 +57,7 @@ class ArticleModel {
     required this.thumbnail,
     required this.categoryId,
     required this.category,
+    required this.favourite,
     required this.createdAt,
     required this.updatedAt
   });
@@ -79,6 +85,26 @@ class ArticleModel {
     RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
     return htmlString.replaceAll(exp, '');
   }
+
+
+  Map<String, dynamic> toDbStore() {
+    Map<String, dynamic> json = {
+      // we don't need id for store
+      'title' : title,
+      'description' : description,
+      'thumbnail' : thumbnail,
+      'category_id' : categoryId,
+      'created_at' : createdAt,
+      'updated_at' : updatedAt,
+      // how about Contact Data List ?
+    };
+    // check new item or not
+    if(id > 0){
+      json['id'] = id;
+    }
+    return json;
+  }
+
 
 }
 

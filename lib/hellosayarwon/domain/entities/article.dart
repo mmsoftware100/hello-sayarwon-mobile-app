@@ -18,6 +18,10 @@ class Article{
   int categoryId;
   Category category;
 
+
+  // favourite
+  int favourite;
+
   // meta data
   String createdAt;
   String updatedAt;
@@ -32,6 +36,7 @@ class Article{
     required this.description,
     required this.thumbnail,
     required this.categoryId,
+    required this.favourite,
     required this.category,
     required this.createdAt,
     required this.updatedAt
@@ -46,6 +51,7 @@ class Article{
       description:"description",
       thumbnail: "https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?size=626&ext=jpg&ga=GA1.1.1412446893.1704758400&semt=sph", // "https://placehold.co/400", // "thumbnail",
       categoryId: 0,
+      favourite: 0,
       category : Category.sample,
       createdAt:"createdAt",
       updatedAt:"updatedAt",
