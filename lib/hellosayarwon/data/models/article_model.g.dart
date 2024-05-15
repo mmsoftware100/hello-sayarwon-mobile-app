@@ -11,7 +11,7 @@ ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) => ArticleModel(
       permalink: json['permalink'] as String? ?? '',
       title: json['post_title'] as String? ?? '',
       description: json['post_content'] as String? ?? '',
-      thumbnail: json['image_thumbnail'] as String? ?? '',
+      thumbnail:   json['image_thumbnail'] is String ? json['image_thumbnail'] as String : "", // json['image_thumbnail'] as String? ?? '',
       categoryId: (json['name'] as num?)?.toInt() ?? 0,
       category: json['users'] == null
           ? null

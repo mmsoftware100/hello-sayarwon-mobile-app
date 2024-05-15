@@ -4,6 +4,7 @@ import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_articles_p
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_categories_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_category_para.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_search_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/categories/category_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/category_provider.dart';
@@ -38,6 +39,7 @@ class _TestPageState extends State<TestPage> {
           //
           Divider(),
           ListTile(title: const Text("Search Articles"), onTap: _searchArticles, ),
+          ListTile(title: const Text("Go To Search"), onTap: _goToSearch, ),
 
         ],
       ),
@@ -49,6 +51,9 @@ class _TestPageState extends State<TestPage> {
   }
   void _goToCategoryListing(){
     Navigator.pushNamed(context, CategoryListPage.routeName);
+  }
+  void _goToSearch(){
+    Navigator.pushNamed(context, ArticleSearchPage.routeName);
   }
 
   Future<void> _refreshArticles() async{

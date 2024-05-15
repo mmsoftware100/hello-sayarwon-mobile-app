@@ -23,6 +23,8 @@ class ArticleModel {
   String description;
 
   // အနိမ့်ဆုံး resolution ကို ယူထားတယ်။
+  // generate လုပ်တဲ့အခါ ဒါလိုမယ်။
+  // thumbnail:   json['image_thumbnail'] is String ? json['image_thumbnail'] as String : "", // json['image_thumbnail'] as String? ?? '',
   @JsonKey(name: 'image_thumbnail' , defaultValue: "")
   String thumbnail;
 
