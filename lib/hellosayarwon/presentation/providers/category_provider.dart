@@ -119,5 +119,5 @@ class CategoryProvider extends ChangeNotifier {
       return true;
     });
   }
-  
+
 }

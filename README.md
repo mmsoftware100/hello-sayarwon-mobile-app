@@ -8,6 +8,20 @@ but build for all types of article contect.
 
 https://documenter.getpostman.com/view/6000182/2sA3BuWp3R
 
+
+## 2024-05-15 Category UI and 
+
+Basic Listing for 
+
+- [ ] Home Page
+- [ ] Category Listing
+- [ ] Article Listing
+- [ ] Article list by category
+- [ ] Search
+
+all online features
+
+
 ## 2024-05-14 Test Pages က စမ်းကြမယ်။
 
 - [x] Refresh article

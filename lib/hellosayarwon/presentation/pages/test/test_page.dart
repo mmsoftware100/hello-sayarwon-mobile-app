@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_article_para.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_articles_para.dart';
+import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_categories_para.dart';
+import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_category_para.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/providers/category_provider.dart';
 import 'package:provider/provider.dart';
 
 class TestPage extends StatefulWidget {
@@ -28,7 +31,8 @@ class _TestPageState extends State<TestPage> {
           ListTile(title: const Text("Article Detail"), onTap: _articleDetail, ),
           //
           Divider(),
-          ListTile(title: const Text("Select category list"), onTap: _refreshArticles, ),
+          ListTile(title: const Text("Select category list"), onTap: _selectCategoryList, ),
+          ListTile(title: const Text("Select category detail"), onTap: _selectCategoryDetail, ),
 
         ],
       ),
@@ -70,11 +74,17 @@ class _TestPageState extends State<TestPage> {
   Future<void> _selectCategoryList() async{
     print("TestPage->_selectCategoryList");
     String accessToken = "";
-    String query = "";
-    int categoryId = 0;
     int page = 1;
-    GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
-    bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
-    print("TestPage->_refreshArticles status $status");
+    GetCategoriesPara getCategoriesPara = GetCategoriesPara(accessToken: accessToken, page: page);
+    bool status = await Provider.of<CategoryProvider>(context, listen: false).getCategoriesPlz(getCategoriesPara: getCategoriesPara);
+    print("TestPage->_selectCategoryList status $status");
+  }
+  Future<void> _selectCategoryDetail() async{
+    print("TestPage->_selectCategoryDetail");
+    String accessToken = "";
+    String permalink = Provider.of<CategoryProvider>(context, listen: false).categories.first.permalink;
+    GetCategoryPara getCategoryPara = GetCategoryPara(accessToken: accessToken, permalink: permalink);
+    bool status = await Provider.of<CategoryProvider>(context, listen: false).getCategoryPlz(getCategoryPara: getCategoryPara);
+    print("TestPage->_selectCategoryList status $status");
   }
 }

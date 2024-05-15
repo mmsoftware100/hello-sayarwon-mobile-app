@@ -3,6 +3,7 @@ import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/test/test_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/providers/category_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'injection_container.dart' as di;
@@ -23,6 +24,10 @@ void main() async{
             getArticles: di.sl(),
             getArticle: di.sl(),
             updateArticle: di.sl()
+        )),
+        ChangeNotifierProvider(create: (_) =>  CategoryProvider(
+            getCategory: di.sl(),
+            getCategories: di.sl()
         )),
 
 
