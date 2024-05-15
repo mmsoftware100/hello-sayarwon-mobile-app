@@ -142,7 +142,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
         Navigator.pushNamed(context, ArticleDetailPage.routeName);
       },
       child: Container(
-        height: 50,
+        height: 150,
         margin: const EdgeInsets.all(8.0),
         decoration:   BoxDecoration(
           color: Colors.green,
@@ -151,16 +151,29 @@ class _ArticleListPageState extends State<ArticleListPage> {
         child:  Row(
           children: [
             Expanded(
-              flex: 1,
-              child: CachedNetworkImage(
-                imageUrl: article.thumbnail,
-                progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+              flex: 2,
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8.0),
+                    bottomLeft: Radius.circular(8.0)
+                ),
+                child: CachedNetworkImage(
+                  height: 150,
+                  imageUrl: article.thumbnail,
+                  progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Expanded(
                 flex: 3,
-                child: Center(child: Text(article.title),)
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(article.title),
+                  ),
+                )
             )
           ],
         ),

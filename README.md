@@ -22,6 +22,16 @@ Basic Listing for
 all online features
 
 
+
+*** Article List by category ကို သီးသန့် page မှာ ထားကြမလား ဒါကတော့ ရိုးရှင်းတဲ့ ချဉ်းကပ်မှုပဲ ***
+
+Duplicate ဖြစ်တာ မှန်ပေမယ့်.
+
+Listing တစ်ခုက မျိုးစုံကို တာဝန်ယူရတာက 
+
+အခုဆိုရင် pull to refresh ရဲ့ auto refresh က အနှောက်အယှက်ပေးနေပြီ။
+
+
 ## 2024-05-14 Test Pages က စမ်းကြမယ်။
 
 - [x] Refresh article
