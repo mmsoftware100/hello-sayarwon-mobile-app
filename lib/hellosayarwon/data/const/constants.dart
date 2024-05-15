@@ -6,6 +6,7 @@ const String loginEndpoint = '$apiVersion/login';
 const String meEndpoint = '$apiVersion/me';
 const String userRegisterEndpoint = '$apiVersion/register';
 const String articleEndpoint = '$apiVersion/article';
+const String articleSearchEndpoint = '$apiVersion/search';
 const String categoryEndpoint = '$apiVersion/category';
 const String articlesEndpoint = '$apiVersion/articles';
 const String categoriesEndpoint = '$apiVersion/categories';

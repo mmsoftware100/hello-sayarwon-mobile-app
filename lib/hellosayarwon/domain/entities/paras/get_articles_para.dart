@@ -16,9 +16,11 @@ class GetArticlesPara{
     Map<String, String> data = {
       "page": page.toString()
     };
-
     if(categoryId != 0){
       data["category_id"] = categoryId.toString();
+    }
+    if(query.isNotEmpty){
+      data["s"] = query;
     }
 
     return data;

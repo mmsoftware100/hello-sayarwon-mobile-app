@@ -21,6 +21,13 @@ Basic Listing for
 
 all online features
 
+Search လုပ်တာက api သက်သက်ဆိုတော့ကာ
+
+remote မှာပဲ တိုးလိုက်ကြတာပေါ့။
+အလွယ်တကူ။
+
+
+
 
 
 *** Article List by category ကို သီးသန့် page မှာ ထားကြမလား ဒါကတော့ ရိုးရှင်းတဲ့ ချဉ်းကပ်မှုပဲ ***

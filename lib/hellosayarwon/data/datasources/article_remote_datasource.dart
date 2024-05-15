@@ -45,8 +45,12 @@ class ArticleRemoteDatasourceImpl implements ArticleRemoteDatasource {
 
      */
     try {
+      String endPoint = articlesEndpoint;
+      if(getArticlesPara.query.isNotEmpty){
+        endPoint = articleSearchEndpoint;
+      }
       dynamic response = await networkInterface.getRequest(
-          url: articlesEndpoint,
+          url: endPoint,
           data: getArticlesPara.toJson(),
           bearerToken: getArticlesPara.accessToken
       );

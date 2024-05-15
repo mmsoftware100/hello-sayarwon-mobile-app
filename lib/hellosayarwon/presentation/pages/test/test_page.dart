@@ -35,6 +35,9 @@ class _TestPageState extends State<TestPage> {
           ListTile(title: const Text("Select category list"), onTap: _selectCategoryList, ),
           ListTile(title: const Text("Select category detail"), onTap: _selectCategoryDetail, ),
           ListTile(title: const Text("Go To Category Listing"), onTap: _goToCategoryListing, ),
+          //
+          Divider(),
+          ListTile(title: const Text("Search Articles"), onTap: _searchArticles, ),
 
         ],
       ),
@@ -92,4 +95,17 @@ class _TestPageState extends State<TestPage> {
     bool status = await Provider.of<CategoryProvider>(context, listen: false).getCategoryPlz(getCategoryPara: getCategoryPara);
     print("TestPage->_selectCategoryList status $status");
   }
+
+
+  Future<void> _searchArticles() async{
+    print("TestPage->_searchArticles");
+    String accessToken = "";
+    String query = "လိင်";
+    int categoryId = 0;
+    int page = 1;
+    GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
+    bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
+    print("TestPage->_searchArticles status $status");
+  }
+
 }
