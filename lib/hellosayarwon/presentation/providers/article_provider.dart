@@ -64,6 +64,18 @@ class ArticleProvider extends ChangeNotifier {
     article = articleDetail;
     notifyListeners();
   }
+  void setCategoryDetail(Category categoryDetail){
+    category = categoryDetail;
+    // ဘယ်ချိန် Clear လုပ်မလဲ? စဉ်းစားထားရန်။
+    // နောက် state က ဘယ်ဟာ သုံးမလဲ?
+    // articles ကိုပဲ ဆက်သုံးကြမလား?
+    // state ခွဲရင် method ခွဲရမလား?
+    // ခွဲရင် method တွေ များလာမှာ ၊ မခွဲရင် method တစ်ခုက state နှစ်ခု သုံးခုကို ကိုင်တွယ်ရမယ်။
+    articles.clear();
+    // လက်ရှိ state တစ်ခုပဲ သုံးတာပေါ့။
+
+    notifyListeners();
+  }
 
   // main methods
   Future<bool> getArticlesPlz( {required GetArticlesPara getArticlesPara}) async {

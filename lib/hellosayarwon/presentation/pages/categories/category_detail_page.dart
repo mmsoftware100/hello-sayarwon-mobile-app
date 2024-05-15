@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_by_category_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/category_provider.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +64,9 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
         ElevatedButton(onPressed: (){
           // go to article listing for articles by category
           // TODO: add category detail logic in article provider
-          Navigator.pushNamed(context, ArticleListPage.routeName);
+          Provider.of<ArticleProvider>(context, listen: false).setCategoryDetail(category);
+          // ဒီ page က သူ့ဘာသာ refresh လုပ်လိမ့်မယ်၊ အပေါ်က set လုပ်ထားတဲ့ category အပေါ် မူတည်ပြီး။
+          Navigator.pushNamed(context, ArticleListByCategoryPage.routeName);
         }, child: Text("More Articles"))
       ],
     );

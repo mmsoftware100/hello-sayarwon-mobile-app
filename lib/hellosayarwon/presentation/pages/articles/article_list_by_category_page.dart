@@ -12,15 +12,15 @@ import '../../../domain/entities/paras/get_articles_para.dart';
 // လောလောဆယ် ရိုးရိုးရှင်းရှင်း ပဲ လုပ်ဉီးမယ်။
 // main listing ဆိုပါတော့။
 
-class ArticleListPage extends StatefulWidget {
-  static const String routeName = "/ArticleListPage";
-  const ArticleListPage({super.key});
+class ArticleListByCategoryPage extends StatefulWidget {
+  static const String routeName = "/ArticleListByCategoryPage";
+  const ArticleListByCategoryPage({super.key});
 
   @override
-  State<ArticleListPage> createState() => _ArticleListPageState();
+  State<ArticleListByCategoryPage> createState() => _ArticleListByCategoryPageState();
 }
 
-class _ArticleListPageState extends State<ArticleListPage> {
+class _ArticleListByCategoryPageState extends State<ArticleListByCategoryPage> {
 
   final RefreshController _refreshController = RefreshController(initialRefresh:  true);
 
@@ -29,7 +29,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Article Listing"),
+        title: Text(Provider.of<ArticleProvider>(context, listen: false).category.title),
       ),
       body: _mainWidget(),
     );
@@ -39,16 +39,19 @@ class _ArticleListPageState extends State<ArticleListPage> {
   void _onRefresh() async{
     // monitor network fetch
 
-    print("TestPage->_refreshArticles");
+    print("ArticleListByCategoryPage->_onRefresh");
     String accessToken = "";
     String query = "";
-    int categoryId = 0; // Provider.of<ArticleProvider>(context, listen: false).category.id;// ဒါဆိုရင် filter အတွက် အဆင်ပြေသွားမယ်။
+    int categoryId =  Provider.of<ArticleProvider>(context, listen: false).category.id;// ဒါဆိုရင် filter အတွက် အဆင်ပြေသွားမယ်။
     // ဘယ်ချိန်မှာ ဒီ category filter ကို clear ပြန်လုပ်မလဲ?
-    // နောက် search လည်း ရှိသေးတယ်။
+    // နောက် search လည်း ရှိသေးတယ်။ ဒါကို နောက်တစ်မျက်နှာ Search Result Page ဆိုပြီး ထပ်လုပ်ကြမလား?
+    // လက်ရှိ listing page  နှစ်ခု ရပြီ။
+    // normal listing နဲ့ category filter ပါတဲ့ listing
+
     int page = 1;
     GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
     bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
-    print("TestPage->_refreshArticles status $status");
+    print("ArticleListByCategoryPage->_onRefresh status $status");
     _refreshController.refreshCompleted();
 
 
@@ -62,15 +65,15 @@ class _ArticleListPageState extends State<ArticleListPage> {
   }
 
   void _onLoading() async{
-    print("TestPage->_loadMoreArticles");
+    print("ArticleListByCategoryPage->_onLoading");
     String accessToken = "";
     String query = "";
-    int categoryId = 0;
+    int categoryId = Provider.of<ArticleProvider>(context, listen: false).category.id;// ဒါဆိုရင် filter အတွက် အဆင်ပြေသွားမယ်။
     int page = Provider.of<ArticleProvider>(context, listen: false).articlesPagination.currentPage;
 
     GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
     bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
-    print("TestPage->_refreshArticles status $status");
+    print("ArticleListByCategoryPage->_onLoading status $status");
     _refreshController.loadComplete();
 
 
@@ -147,8 +150,8 @@ class _ArticleListPageState extends State<ArticleListPage> {
         height: 150,
         margin: const EdgeInsets.all(8.0),
         decoration:   BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.circular(8.0)
+            color: Colors.green,
+            borderRadius: BorderRadius.circular(8.0)
         ),
         child:  Row(
           children: [

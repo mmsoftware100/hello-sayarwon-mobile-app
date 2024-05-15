@@ -11,4 +11,16 @@ class GetArticlesPara{
     required this.categoryId,
     required this.page
   });
+
+  Map<String, String> toJson(){
+    Map<String, String> data = {
+      "page": page.toString()
+    };
+
+    if(categoryId != 0){
+      data["category_id"] = categoryId.toString();
+    }
+
+    return data;
+  }
 }

@@ -38,11 +38,16 @@ class ArticleRemoteDatasourceImpl implements ArticleRemoteDatasource {
 
   @override
   Future<List<Article>> getArticles( {required GetArticlesPara getArticlesPara}) async {
-    var map = {"page": getArticlesPara.page};
+    /*
+    var map = {
+      "page": getArticlesPara.page
+    };
+
+     */
     try {
       dynamic response = await networkInterface.getRequest(
           url: articlesEndpoint,
-          data: map,
+          data: getArticlesPara.toJson(),
           bearerToken: getArticlesPara.accessToken
       );
       List<dynamic> data = response['data']['posts'];
