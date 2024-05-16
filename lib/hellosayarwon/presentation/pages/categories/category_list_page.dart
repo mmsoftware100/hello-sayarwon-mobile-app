@@ -148,26 +148,65 @@ class _CategoryListPageState extends State<CategoryListPage> {
         Navigator.pushNamed(context, CategoryDetailPage.routeName);
       },
       child: Container(
-        height: 50,
+        height: 124,
         margin: const EdgeInsets.all(8.0),
         decoration:   BoxDecoration(
-            color: Colors.green,
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(8.0)
         ),
-        child:  Row(
+        child:  Stack(
           children: [
-            Expanded(
-              flex: 1,
+            Column(
+              children: [
+                // overlap area
+                SizedBox(height: 24,),
+                Container(
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(8.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.4),
+                        spreadRadius: 2,
+                        blurRadius: 8,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      /*
+                      Expanded(
+                        flex: 1,
+                        child: CachedNetworkImage( imageUrl: category.thumbnail, progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress), errorWidget: (context, url, error) => const Icon(Icons.error),),
+                      ),
+
+                       */
+                      Expanded(
+                          flex: 3,
+                          child: Center(child: Text(category.title),)
+                      ),
+
+                      Expanded( flex: 1, child : Container(color: Colors.transparent,)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            // overlap icon
+            Positioned(
+              top: 0,
+              right: 50,
               child: CachedNetworkImage(
+                width: MediaQuery.of(context).size.width / 4,
                 imageUrl: category.thumbnail,
                 progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
+                fit: BoxFit.contain,
               ),
-            ),
-            Expanded(
-                flex: 3,
-                child: Center(child: Text(category.title),)
             )
+
           ],
         ),
       ),
