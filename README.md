@@ -10,9 +10,28 @@ https://documenter.getpostman.com/view/6000182/2sA3BuWp3R
 
 ## 2024-05-16 Favourite and UI
 
-- [ ] Favourite Listing ကနေ detail ကို သွားတဲ့အခါ api call ခေါ်မိနေတယ်။ favourite ဆိုရင် မခေါ်ဘူးလို့ လုပ်လို့ရမလား?
+- [x] Favourite Listing ကနေ detail ကို သွားတဲ့အခါ api call ခေါ်မိနေတယ်။ favourite ဆိုရင် မခေါ်ဘူးလို့ လုပ်လို့ရမလား?
 
 ရတယ်။ api call မခေါ်ပဲ ဒီအတိုင်း set detail and navigate လုပ်လိုက်ရုံပဲ။
+
+
+ဒါဆို Home Page လုပ်ရင် ရမယ်။
+
+Button Navigation မှာပဲ
+
+Home, Category, Favourite နဲ့ Account/About ဆိုပြီး ထားမယ်။
+
+
+### Firebase add မယ်။
+
+ဘယ်လောက်ကြာမလဲ?
+တစ်နာရီလောက်တော့ ကြာမယ် 
+ထင်တယ်။
+
+ဒီတစ်ခါတော့ note ပါ သေချာထုတ်လိုက်ကြရအောင်။
+
+
+ခန break off @ 1240 
 
 
 ## 2024-05-15 Category UI and 

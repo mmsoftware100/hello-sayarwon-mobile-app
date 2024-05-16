@@ -45,7 +45,4 @@ String createArticleSql = '''
       )
 ''';
 
-
-
-
-const String FCM_TOPIC = "shann_directory";
+const String FCM_TOPIC = "hello_sayarwon";
