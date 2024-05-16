@@ -158,11 +158,13 @@ class _HomePageState extends State<HomePage> {
     GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
     Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
 
+    GetArticlesPara getArticlesParaForFav = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page, favourite: true);
+    Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesParaForFav);
+
+
     GetCategoriesPara getCategoriesPara = GetCategoriesPara(accessToken: accessToken, page: page);
     Provider.of<CategoryProvider>(context, listen: false).getCategoriesPlz(getCategoriesPara: getCategoriesPara);
 
-    GetArticlesPara getArticlesParaForFav = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page, favourite: true);
-    Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesParaForFav);
 
   }
 

@@ -92,23 +92,31 @@ class ArticleProvider extends ChangeNotifier {
 
   // main methods
   Future<bool> getArticlesPlz( {required GetArticlesPara getArticlesPara}) async {
+    print("ArticleProvider->getArticlesPlz ${getArticlesPara.favourite}");
+
     print("ArticleProvider->getArticlesPlz favourite ${getArticlesPara.favourite}");
     // before phase
     // update status
-    articlesDataStatus = DataStatus.loading;
     if(getArticlesPara.page == 1 && getArticlesPara.favourite == false && getArticlesPara.categoryId == 0){
       print("main listing cleared");
+      articlesDataStatus = DataStatus.loading;
       articles.clear();
+      articlesPagination.currentPage = 1; // refresh
+
     }
     if(getArticlesPara.page == 1 && getArticlesPara.favourite == true && getArticlesPara.categoryId == 0){
       print("fav listing cleared");
+      articlesByFavouriteDataStatus = DataStatus.loading;
       articlesByFavourite.clear();
     }
     if(getArticlesPara.page == 1 && getArticlesPara.categoryId > 0){
       print("category listing cleared");
+      articlesByCategoryDataStatus = DataStatus.loading;
       articlesByCategory.clear();
     }
     notifyListeners();
+
+    await Future.delayed(Duration(seconds: 5));
 
     // doing business using use case
     final Either<Failure, List<Article>> articlesEither =
@@ -118,12 +126,47 @@ class ArticleProvider extends ChangeNotifier {
     return articlesEither.fold((failure) {
       // failure phase
       articlesDataStatus = DataStatus.error;
+      // category listing ကို failure ရမလား?
+      // main listing ကို failure ရမလား
+      // နည်းနည်း နက်နဲ့သွားပြီ။
       if(failure is SingleMessageFailure){
         articlesSingleMessageFailure = failure;
+        // main listing
+        if(getArticlesPara.favourite == false && getArticlesPara.categoryId == 0){
+          articlesDataStatus = DataStatus.error;
+          articlesSingleMessageFailure = failure;
+        }
+        // fav listing
+        if(getArticlesPara.favourite == true && getArticlesPara.categoryId == 0){
+          articlesByFavouriteDataStatus = DataStatus.error;
+          articlesByFavouriteSingleMessageFailure = failure;
+        }
+        // category listing
+        if(getArticlesPara.categoryId > 0){
+          articlesByCategoryDataStatus = DataStatus.error;
+          articlesByCategorySingleMessageFailure = failure;
+        }
+
       }
       // တစ်ခြား exception တွေ ဆိုရင်တော့ Something went wrong လို့ပဲ မှတ်လိုက်မလား
       else{
-        articlesSingleMessageFailure = SingleMessageFailure(message: "Something went wrong @p");
+        failure = SingleMessageFailure(message: "Something went wrong @p");
+        articlesSingleMessageFailure = failure;
+        // main listing
+        if(getArticlesPara.favourite == false && getArticlesPara.categoryId == 0){
+          articlesDataStatus = DataStatus.error;
+          articlesSingleMessageFailure = failure;
+        }
+        // fav listing
+        if(getArticlesPara.favourite == true && getArticlesPara.categoryId == 0){
+          articlesByFavouriteDataStatus = DataStatus.error;
+          articlesByFavouriteSingleMessageFailure = failure;
+        }
+        // category listing
+        if(getArticlesPara.categoryId > 0){
+          articlesByCategoryDataStatus = DataStatus.error;
+          articlesByCategorySingleMessageFailure = failure;
+        }
       }
       notifyListeners();
       return false;
@@ -136,15 +179,18 @@ class ArticleProvider extends ChangeNotifier {
       // method တစ်ခုက state (၃) ခုကို ထိမ်းသောအခါ
       if(getArticlesPara.favourite){
         articlesByFavourite.addAll(articlesFromServer);
+        articlesByFavouritePagination.currentPage = getArticlesPara.page + 1;
       }
+      // main listing
       if(getArticlesPara.favourite == false && getArticlesPara.categoryId == 0){
+        articlesPagination.currentPage = getArticlesPara.page + 1;
         articles.addAll(articlesFromServer);
       }
       if(getArticlesPara.favourite == false && getArticlesPara.categoryId > 0){
+        articlesByCategoryPagination.currentPage = getArticlesPara.page + 1;
         articlesByCategory.addAll(articlesFromServer);
       }
-      print(articles.length);
-      articlesPagination.currentPage = getArticlesPara.page + 1;
+      // print(articles.length);
       notifyListeners();
       return true;
     });

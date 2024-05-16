@@ -68,7 +68,7 @@ class _ArticleSearchPageState extends State<ArticleSearchPage> {
     String accessToken = "";
     String query = tec.text;
     int categoryId = Provider.of<ArticleProvider>(context, listen: false).category.id;// ဒါဆိုရင် filter အတွက် အဆင်ပြေသွားမယ်။
-    int page = Provider.of<ArticleProvider>(context, listen: false).articlesPagination.currentPage;
+    int page = Provider.of<ArticleProvider>(context, listen: false).articlesBySearchPagination.currentPage;
 
     GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
     bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
@@ -102,7 +102,7 @@ class _ArticleSearchPageState extends State<ArticleSearchPage> {
       onRefresh: _onRefresh,
       onLoading: _onLoading,
       child: _articleList(
-        articleList: Provider.of<ArticleProvider>(context, listen: true).articles,
+        articleList: Provider.of<ArticleProvider>(context, listen: true).articlesBySearch,
         //dataStatus: widget.dataStatus, //  Provider.of<ImirrorProvider>(context, listen: true).articleStatus,
         //pagination: widget.pagination, //  Provider.of<ImirrorProvider>(context, listen: true).paginationEntity
       ),

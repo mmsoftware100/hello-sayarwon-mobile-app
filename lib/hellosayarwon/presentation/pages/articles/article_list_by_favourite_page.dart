@@ -65,7 +65,7 @@ class _ArticleListByFavouritePageState extends State<ArticleListByFavouritePage>
     String accessToken = "";
     String query = "";
     int categoryId = Provider.of<ArticleProvider>(context, listen: false).category.id;// ဒါဆိုရင် filter အတွက် အဆင်ပြေသွားမယ်။
-    int page = Provider.of<ArticleProvider>(context, listen: false).articlesPagination.currentPage;
+    int page = Provider.of<ArticleProvider>(context, listen: false).articlesByFavouritePagination.currentPage;
 
     GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
     bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);

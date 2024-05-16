@@ -127,7 +127,13 @@ class _ArticleListPageState extends State<ArticleListPage> {
   }
 
   Widget _articleList({required List<Article> articleList, required DataStatus dataStatus, required Pagination pagination}){
-    // return Text(pagination.currentPage.toString());
+    // သဘောပေါက်ပြီ။ dataStatus က ဘယ်နှစ်ခုက ပြောင်းနေနိုင်မလဲ?
+    // favourite ကလည်း ပြောင်းဉီးမှာပဲ။
+    // ဒါဆို favourite အတွက် status တစ်ခု လုပ်လိုက်မယ်။ ဒါမှ မဟုတ် မလုပ်ဘူးပေါ့။
+    // return Center(child: CircularProgressIndicator());
+    // refresh လုပ်တော့ page 1 ဆိုတာကို ui ဘက်က ဆုံးဖြတ်လိုက်တာ။
+    // provider ဘက်မှာ 2 ဖြစ်နေတုန်းပဲ။
+    // return Text(pagination.currentPage.toString() + dataStatus.toString());
     // initial and loading
     if(dataStatus == DataStatus.loading && pagination.currentPage <= 1 ) return Center(child: CircularProgressIndicator());
     // what about error / may be offline
