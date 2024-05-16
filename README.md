@@ -64,6 +64,19 @@ https://socket-server-uiks.onrender.com/fcm?title=$title&description=$descriptio
 https://socket-server-uiks.onrender.com/fcm?title=ဆရာဝန်&description=မင်္ဂလာပါ&topic=hello_sayarwon
 
 
+
+https://socket-server-uiks.onrender.com/fcm?title=ဖေဖေဖြစ်နိုင်မယ့် အခွင့်အရေး&description=ဒီလိုနည်းနဲ့ မြင့်တင်လိုက်ပါ&topic=hello_sayarwon
+
+
+Notification Icon updated.
+
+Final Check with FCM in release mode.
+
+- [ ] Search Page / Icon ထည့်ပေးရမယ်။
+
+ဒါမှ မဟုတ် search bar ကို ထိပ်ဆုံးမှာ တင်ပေးထားရမလား။
+
+action မှာ 
 - [1415] FCM အိုကေပြီ။
 
 minSdk version တွေ ဘာတွေ ဂရုစိုက်ရတယ်။
@@ -150,6 +163,17 @@ Category Card ပုံစံမှာ
 
 
 article card တွေကိုလည်း ပြန်စစ်ကြည့်ရမယ်။
+
+
+release mode နဲ့ တစ်ခါ စမ်းပြီးရင် 
+promotional poster ထုတ်မယ်။
+
+
+
+notificatoin icon 
+
+https://romannurik.github.io/AndroidAssetStudio/icons-notification.html#source.type=image&source.space.trim=1&source.space.pad=0&name=ic_stat_hello_sayarwon_removebg_preview
+
 
 
 

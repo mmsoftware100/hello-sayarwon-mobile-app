@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hellosayarwon/core/status/pagination.dart';
 import 'package:hellosayarwon/core/status/status.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_detail_page.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_search_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/components/article_description_shimmer.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,9 @@ class _ArticleListPageState extends State<ArticleListPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Article Listing"),
+        actions: [
+          IconButton(onPressed: (){ Navigator.pushNamed(context, ArticleSearchPage.routeName); }, icon: Icon(Icons.search))
+        ],
       ),
       body: _mainWidget(),
     );

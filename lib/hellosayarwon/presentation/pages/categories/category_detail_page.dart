@@ -52,6 +52,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
               // category title
               Text(category.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0),),
 
+              SizedBox(height: 8.0,),
+
               // category description
               if(Provider.of<CategoryProvider>(context, listen: true).categoryDataStatus == DataStatus.loading) ArticleDescriptionShimmer(),
               Text(category.description, style: TextStyle( fontSize: 16.0, height: 2.0),),
@@ -96,7 +98,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
       },
       child: Container(
         height: 150,
-        margin: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.fromLTRB(0, 8.0, 0, 8.0),
         decoration:   BoxDecoration(
             color: Colors.green,
             borderRadius: BorderRadius.circular(8.0)

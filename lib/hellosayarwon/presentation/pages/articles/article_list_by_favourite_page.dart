@@ -147,7 +147,13 @@ class _ArticleListByFavouritePageState extends State<ArticleListByFavouritePage>
         height: 150,
         margin: const EdgeInsets.all(8.0),
         decoration:   BoxDecoration(
-            color: Colors.green,
+            // color: Colors.green,
+            gradient: LinearGradient(
+              colors: [Colors.greenAccent, Colors.green ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              // stops: [0, 0.5], // Optional stops
+            ),
             borderRadius: BorderRadius.circular(8.0)
         ),
         child:  Row(
@@ -173,7 +179,7 @@ class _ArticleListByFavouritePageState extends State<ArticleListByFavouritePage>
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(article.title),
+                    child: Text(article.title, style: TextStyle(fontSize: 14, color: Colors.white, height: 2.0),),
                   ),
                 )
             )

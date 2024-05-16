@@ -67,7 +67,7 @@ class _ArticleSearchPageState extends State<ArticleSearchPage> {
     print("ArticleSearchPage->_onLoading");
     String accessToken = "";
     String query = tec.text;
-    int categoryId = Provider.of<ArticleProvider>(context, listen: false).category.id;// ဒါဆိုရင် filter အတွက် အဆင်ပြေသွားမယ်။
+    int categoryId = 0; // Provider.of<ArticleProvider>(context, listen: false).category.id;// ဒါဆိုရင် filter အတွက် အဆင်ပြေသွားမယ်။
     int page = Provider.of<ArticleProvider>(context, listen: false).articlesBySearchPagination.currentPage;
 
     GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
@@ -82,12 +82,24 @@ class _ArticleSearchPageState extends State<ArticleSearchPage> {
     // pull to refresh လိုတယ်။
     return Column(
       children: [
-        TextFormField(
-          controller: tec,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextFormField(
+            onFieldSubmitted: (_){
+              _refreshController.requestRefresh();
+            },
+            controller: tec,
+            decoration: InputDecoration(
+              // outline border
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              hintText: 'ရှာလိုသည်များ ရိုက်ထည့်ပါ',
+              labelText: 'ရှာရန်',
+            ),
+          ),
         ),
-        ElevatedButton(onPressed: (){
-          _refreshController.requestRefresh();
-        }, child: Text("Search")),
+        ElevatedButton(onPressed: (){ _refreshController.requestRefresh(); }, child: Text("ရှာပါ")),
         Expanded(child: _pullToRefresh())
       ],
     );
@@ -133,24 +145,33 @@ class _ArticleSearchPageState extends State<ArticleSearchPage> {
         height: 150,
         margin: const EdgeInsets.all(8.0),
         decoration:   BoxDecoration(
-            color: Colors.green,
-            borderRadius: BorderRadius.circular(8.0)
+            // color: Colors.green,
+            borderRadius: BorderRadius.circular(8.0),
+            gradient: LinearGradient(
+              colors: [Colors.greenAccent, Colors.green ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              // stops: [0, 0.5], // Optional stops
+            ),
         ),
         child:  Row(
           children: [
             Expanded(
               flex: 2,
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8.0),
-                    bottomLeft: Radius.circular(8.0)
-                ),
-                child: CachedNetworkImage(
-                  height: 150,
-                  imageUrl: article.thumbnail,
-                  progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                  fit: BoxFit.cover,
+              child: Padding(
+                padding: const EdgeInsets.all(0.5),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8.0),
+                      bottomLeft: Radius.circular(8.0)
+                  ),
+                  child: CachedNetworkImage(
+                    height: 150,
+                    imageUrl: article.thumbnail,
+                    progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -159,7 +180,7 @@ class _ArticleSearchPageState extends State<ArticleSearchPage> {
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(article.title),
+                    child: Text(article.title, style: TextStyle(color: Colors.white, height: 2.0, fontSize: 14.0),),
                   ),
                 )
             )

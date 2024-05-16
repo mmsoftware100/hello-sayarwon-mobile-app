@@ -97,26 +97,33 @@ class ArticleProvider extends ChangeNotifier {
     print("ArticleProvider->getArticlesPlz favourite ${getArticlesPara.favourite}");
     // before phase
     // update status
-    if(getArticlesPara.page == 1 && getArticlesPara.favourite == false && getArticlesPara.categoryId == 0){
+    if(getArticlesPara.page == 1 && getArticlesPara.favourite == false && getArticlesPara.categoryId == 0 && getArticlesPara.query.isEmpty){
       print("main listing cleared");
       articlesDataStatus = DataStatus.loading;
       articles.clear();
       articlesPagination.currentPage = 1; // refresh
-
     }
-    if(getArticlesPara.page == 1 && getArticlesPara.favourite == true && getArticlesPara.categoryId == 0){
+    if(getArticlesPara.page == 1 && getArticlesPara.favourite == true && getArticlesPara.categoryId == 0 && getArticlesPara.query.isEmpty){
       print("fav listing cleared");
       articlesByFavouriteDataStatus = DataStatus.loading;
       articlesByFavourite.clear();
     }
-    if(getArticlesPara.page == 1 && getArticlesPara.categoryId > 0){
+    if(getArticlesPara.page == 1 && getArticlesPara.categoryId > 0 && getArticlesPara.query.isEmpty){
       print("category listing cleared");
       articlesByCategoryDataStatus = DataStatus.loading;
       articlesByCategory.clear();
     }
+    // search
+    if(getArticlesPara.page == 1 && getArticlesPara.favourite == false && getArticlesPara.categoryId == 0 && getArticlesPara.query.isNotEmpty){
+      print("main listing cleared");
+      articlesBySearchDataStatus = DataStatus.loading;
+      articlesBySearch.clear();
+      articlesBySearchPagination.currentPage = 1; // refresh
+    }
+
     notifyListeners();
 
-    await Future.delayed(Duration(seconds: 5));
+    // await Future.delayed(Duration(seconds: 5));
 
     // doing business using use case
     final Either<Failure, List<Article>> articlesEither =
@@ -167,6 +174,7 @@ class ArticleProvider extends ChangeNotifier {
           articlesByCategoryDataStatus = DataStatus.error;
           articlesByCategorySingleMessageFailure = failure;
         }
+
       }
       notifyListeners();
       return false;
@@ -177,19 +185,31 @@ class ArticleProvider extends ChangeNotifier {
       articlesDataStatus = DataStatus.data;
       // ဘယ်မှာ သွားထည့်ကြမလဲ
       // method တစ်ခုက state (၃) ခုကို ထိမ်းသောအခါ
+      // favourite listing
       if(getArticlesPara.favourite){
+        articlesByFavouriteDataStatus = DataStatus.data;
         articlesByFavourite.addAll(articlesFromServer);
         articlesByFavouritePagination.currentPage = getArticlesPara.page + 1;
       }
       // main listing
       if(getArticlesPara.favourite == false && getArticlesPara.categoryId == 0){
+        articlesDataStatus = DataStatus.data;
         articlesPagination.currentPage = getArticlesPara.page + 1;
         articles.addAll(articlesFromServer);
       }
+      // category listing
       if(getArticlesPara.favourite == false && getArticlesPara.categoryId > 0){
+        articlesByCategoryDataStatus = DataStatus.data;
         articlesByCategoryPagination.currentPage = getArticlesPara.page + 1;
         articlesByCategory.addAll(articlesFromServer);
       }
+      // search
+      if(getArticlesPara.favourite == false && getArticlesPara.categoryId == 0 && getArticlesPara.query.isNotEmpty){
+        articlesBySearchDataStatus = DataStatus.data;
+        articlesBySearch.addAll(articlesFromServer);
+        articlesBySearchPagination.currentPage = getArticlesPara.page + 1;
+      }
+
       // print(articles.length);
       notifyListeners();
       return true;
