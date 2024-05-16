@@ -22,7 +22,7 @@ class ArticleListPage extends StatefulWidget {
 
 class _ArticleListPageState extends State<ArticleListPage> {
 
-  final RefreshController _refreshController = RefreshController(initialRefresh:  true);
+  final RefreshController _refreshController = RefreshController(initialRefresh:  false);
 
 
   @override

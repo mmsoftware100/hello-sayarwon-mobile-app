@@ -27,7 +27,7 @@ class CategoryListPage extends StatefulWidget {
 
 class _CategoryListPageState extends State<CategoryListPage> {
 
-  final RefreshController _refreshController = RefreshController(initialRefresh:  true);
+  final RefreshController _refreshController = RefreshController(initialRefresh:  false);
 
 
   @override

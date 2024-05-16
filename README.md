@@ -64,6 +64,74 @@ https://socket-server-uiks.onrender.com/fcm?title=$title&description=$descriptio
 https://socket-server-uiks.onrender.com/fcm?title=ဆရာဝန်&description=မင်္ဂလာပါ&topic=hello_sayarwon
 
 
+- [1415] FCM အိုကေပြီ။
+
+minSdk version တွေ ဘာတွေ ဂရုစိုက်ရတယ်။
+project နဲ့ app build gradle နှစ်ခုမှာ ပြင်မယ်။
+
+main.dart နဲ့
+home_page.dart မှာ ပြင်မယ်။
+
+ဒါဆို ရပြီ။
+လွယ်ပါတယ်။
+
+၏
+
+အရင်ဆုံး ရနိုင်တဲ့ (၂) ခုကတော့
+
+Category နဲ့ Favourite List ပဲ
+
+ရိုးရိုး listing လည်း ရမယ်။
+
+ဒါကို home page မှာ ခနထားရင် ထားလိုက်မယ်။
+
+new home page ကို တစ်ခုထား
+about က ပြီးမှ စဉ်းစား။
+
+
+pull to refresh  က အော်တို ဖြစ်နေတာ တစ်ခု စဉ်းစားရမယ်။
+
+home ကပဲ initial တစ်ခါ ခေါ်ပြီး
+ကျန်တာက user ခေါ်မှ သွားလိုက်။
+
+
+
+share လုပ်ချင်တယ် ဆိုရင်
+
+app link ကို လုပ်ရမလား?
+hello sayarwon website link ကိုပဲ ပေးမလား?
+
+
+auto refresh ကို ပိတ်လိုက်တာက 
+category listing မှာ အကျိုးသတ်ရောက်မှု ရှိနိုင်လား
+သီးခြားစီဆိုရင်တော့ မလိုဘူး ဖြစ်မယ်။
+
+
+သီးခြားစီ။
+ဒီတော့ မလို။
+
+home page , category နဲ့ favourite ပဲ လိုတာ။
+
+About မှာ ဘာတွေရေး။
+
+
+Hello Sayarwon ရဲ့
+အခြား နိုင်ငံက ဗားရှင်းတွေလည်း လုပ်ရမယ်။
+
+https://wp.hellokhunmor.com/wp-json/api/health-tools/bmi-calculator/info? 
+
+
+https://wp.hellokhunmor.com/wp-json/api/articles
+https://hellodoctor.com.ph/
+https://hellosehat.com/
+https://hellodoktor.com/
+https://hellokrupet.com/
+https://helloyishi.com.tw/
+https://hellobacsi.com/
+
+
+
+
 
 
 ## 2024-05-15 Category UI and 

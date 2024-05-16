@@ -2,9 +2,16 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_by_favourite_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/categories/category_list_page.dart';
+import 'package:provider/provider.dart';
 
 import '../../../data/const/constants.dart';
+import '../../../domain/entities/paras/get_articles_para.dart';
+import '../../../domain/entities/paras/get_categories_para.dart';
+import '../../providers/article_provider.dart';
+import '../../providers/category_provider.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = "/HomePage";
@@ -21,7 +28,9 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    Center(child: Text("1"),),
+    ArticleListPage(),
+    CategoryListPage(),
+    ArticleListByFavouritePage(),
     Center(child: Text("2"),),
     Center(child: Text("3"),),
     Center(child: Text("4"),),
@@ -133,57 +142,26 @@ class _HomePageState extends State<HomePage> {
 
 
   void _refresh()async{
-    int pageNo = 1;
-    int categoryId = 0;
-    // for offline
 
-    /*
-    Provider.of<ImirrorProvider>(context, listen: false).selectArticlePlz(accessToken: "accessToken", pageNo: pageNo, projectId: projectId, categoryId: categoryId, query: "", local: true);
+    // ဒီနေရာမှာ
 
-    Provider.of<ImirrorProvider>(context, listen: false).selectArticlePlz(accessToken: "accessToken", pageNo: pageNo, projectId: projectId, categoryId: categoryId, query: "");
-    Provider.of<ImirrorProvider>(context, listen: false).selectCategoryListPlz(accessToken: "accessToken", pageNo: pageNo, projectId: projectId);
-    Provider.of<ImirrorProvider>(context, listen: false).getProjectInfoPlz(projectId: projectId);
-    bool updateStatus = await Provider.of<ImirrorProvider>(context, listen: false).getUpdateInfoPlz(projectId: projectId);
-    if(updateStatus == true){
-      // check api response
-      UpdateInfo updateInfo = Provider.of<ImirrorProvider>(context, listen: false).updateInfo;
-      if(updateInfo.update){
-        // now show alert
-        return showDialog(
-            context: context,
-            builder: (BuildContext context){
-              return AlertDialog(
-                title: Text(title),
-                content: Text("New Version!"),
-                actions: [
-                  updateInfo.force == false ? TextButton(
-                      onPressed: (){
-                        // we can dismis
-                        Navigator.pop(context);
-                      },
-                      child: Text("Cancel")): Container(),
-                  TextButton(
-                      onPressed: ()async{
-                        Navigator.pop(context);
-                        // open download link
-                        if (!await launchUrl(Uri.parse(updateInfo.downloadLink))) {
-                          throw Exception('Could not launch ${updateInfo.downloadLink}');
-                        }
-                        else{
-                          print("can not open");
-                        }
+    // articles, category, favourite သုံးခုလုံး select လုပ်ထားမယ်။ page ၁ အတွက်။
+    // refresh (၃) ကို ဒီကူးလာခဲ့မယ်။
 
-                      },
-                      child: Text("Update"))
+    String accessToken = "";
+    String query = "";
+    int categoryId = 0; // Provider.of<ArticleProvider>(context, listen: false).category.id;// ဒါဆိုရင် filter အတွက် အဆင်ပြေသွားမယ်။
+    // ဘယ်ချိန်မှာ ဒီ category filter ကို clear ပြန်လုပ်မလဲ?
+    // နောက် search လည်း ရှိသေးတယ်။
+    int page = 1;
+    GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
+    Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
 
-                ],
-              );
-            }
-        );
-      }
-    }
-    
-     */
+    GetCategoriesPara getCategoriesPara = GetCategoriesPara(accessToken: accessToken, page: page);
+    Provider.of<CategoryProvider>(context, listen: false).getCategoriesPlz(getCategoriesPara: getCategoriesPara);
+
+    GetArticlesPara getArticlesParaForFav = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page, favourite: true);
+    Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesParaForFav);
 
   }
 
@@ -207,8 +185,8 @@ class _HomePageState extends State<HomePage> {
             label: 'အမျိုးအစား',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.article),
-            label: "နေရာ",
+            icon: Icon(Icons.favorite),
+            label: "အကြိုက်",
           ),
           // BottomNavigationBarItem(
           //   icon: Icon(Icons.search),
@@ -220,7 +198,7 @@ class _HomePageState extends State<HomePage> {
           // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'ဆက်သွယ်ပါ',
+            label: 'အကောင့်',
           ),
         ],
         onTap: (index) {

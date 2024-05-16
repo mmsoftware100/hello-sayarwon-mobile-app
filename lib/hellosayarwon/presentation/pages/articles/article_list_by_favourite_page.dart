@@ -22,7 +22,7 @@ class ArticleListByFavouritePage extends StatefulWidget {
 
 class _ArticleListByFavouritePageState extends State<ArticleListByFavouritePage> {
 
-  final RefreshController _refreshController = RefreshController(initialRefresh:  true);
+  final RefreshController _refreshController = RefreshController(initialRefresh:  false);
 
 
   @override
