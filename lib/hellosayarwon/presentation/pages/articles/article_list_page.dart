@@ -161,24 +161,34 @@ class _ArticleListPageState extends State<ArticleListPage> {
         height: 150,
         margin: const EdgeInsets.all(8.0),
         decoration:   BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.circular(8.0)
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.4),
+              spreadRadius: 2,
+              blurRadius: 8,
+            ),
+          ],
         ),
         child:  Row(
           children: [
             Expanded(
               flex: 2,
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8.0),
-                    bottomLeft: Radius.circular(8.0)
-                ),
-                child: CachedNetworkImage(
-                  height: 150,
-                  imageUrl: article.thumbnail,
-                  progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                  fit: BoxFit.cover,
+              child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8.0),
+                      bottomLeft: Radius.circular(8.0)
+                  ),
+                  child: CachedNetworkImage(
+                    height: 150,
+                    imageUrl: article.thumbnail,
+                    progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -187,7 +197,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(article.title),
+                    child: Text(article.title, style: TextStyle(height: 2.0, fontSize: 14.0),),
                   ),
                 )
             )

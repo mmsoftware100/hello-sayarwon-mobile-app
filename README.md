@@ -139,6 +139,19 @@ Yeah, i mean shimmer with detailed place.
 - [ ] New HOme Page
 - [ ] Sale post / sharing 
 
+Category Card ပုံစံမှာ
+ပုံကို ဘောင်အပြင်ရောက်အောင်လုပ်မယ်။
+
+ကျန်တဲ့ bug တွေရှိလား ကြည့်မယ်။
+
+အဖြူရောင်ပေါ်မှာ 
+သိသိသာသာ division ခွဲထားနိုင်ရင်လည်း ကောင်းမယ်။
+အမြဲလိုလို အစိမ်းကတ်က အဆင်မပြေနိုင်။
+
+
+article card တွေကိုလည်း ပြန်စစ်ကြည့်ရမယ်။
+
+
 
 
 Hello Sayarwon ရဲ့
