@@ -22,6 +22,9 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+// Add this line
+apply plugin: 'com.google.gms.google-services'
+
 android {
     namespace "com.mmsoftware100.hellosayarwon.hellosayarwon"
     compileSdkVersion 34
@@ -45,8 +48,10 @@ android {
         applicationId "com.mmsoftware100.hellosayarwon.hellosayarwon"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        //minSdkVersion flutter.minSdkVersion
+        //targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -64,4 +69,14 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+
+    // Add the dependency for the Firebase SDK for Google Analytics
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-messaging'
+
+}

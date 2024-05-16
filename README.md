@@ -33,6 +33,38 @@ Home, Category, Favourite နဲ့ Account/About ဆိုပြီး ထာ�
 
 ခန break off @ 1240 
 
+hey, I'm back.
+
+- [1250] FCM package တွေ ထည့်ပြီးပြီ။
+
+
+
+firebase_core: ^2.25.2
+firebase_messaging: ^14.7.13
+flutter_local_notifications: ^16.3.2
+
+
+Firebase Panel မှာ json file  သွားယူမယ်။
+
+com.mmsoftware100.hellosayarwon
+
+
+project level gradle
+
+
+id("com.google.gms.google-services") version "4.4.1" apply false
+
+
+- [1400] kotlin version တွေ၊ android ဘက်က gradle files တွေမှာ dependency တွေ ပြင်တာတွေနဲ့ ရွာတွေလည်။
+ဘယ်ဟာက အမှန်မှန်း မသိ။
+
+
+https://socket-server-uiks.onrender.com/fcm?title=$title&description=$description&topic=$topic
+
+https://socket-server-uiks.onrender.com/fcm?title=ဆရာဝန်&description=မင်္ဂလာပါ&topic=hello_sayarwon
+
+
+
 
 ## 2024-05-15 Category UI and 
 

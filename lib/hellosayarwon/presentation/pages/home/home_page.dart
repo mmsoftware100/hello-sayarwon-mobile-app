@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
             channelDescription: channel.description,
             // TODO add a proper drawable resource to android, for now using
             //      one that already exists in example app.
-            icon: 'background',
+            icon: 'launch_background',
           ),
         ),
       );
