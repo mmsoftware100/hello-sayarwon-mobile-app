@@ -32,6 +32,10 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
   }
 
   Widget _favouriteButton(Article article){
+    if(Provider.of<ArticleProvider>(context, listen: true).articleDataStatus == DataStatus.loading) return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator()),
+    );
     return IconButton(
         onPressed: (){
           String accessToken = "";
@@ -63,9 +67,9 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
               // Text(Provider.of<ArticleProvider>(context, listen: true).articleDataStatus.toString()),
               // description
 
-              if(Provider.of<ArticleProvider>(context, listen: true).articleDataStatus == DataStatus.loading) ArticleDescriptionShimmer(),
+              if(Provider.of<ArticleProvider>(context, listen: true).articleDataStatus == DataStatus.loading && Provider.of<ArticleProvider>(context, listen: true).article.description.isEmpty) ArticleDescriptionShimmer(),
               // TODO: show loading shimmer effect on loading
-              if(Provider.of<ArticleProvider>(context, listen: true).articleDataStatus == DataStatus.data) Text(article.description, style: TextStyle(height: 2.0),),
+              if(Provider.of<ArticleProvider>(context, listen: true).articleDataStatus == DataStatus.data || Provider.of<ArticleProvider>(context, listen: true).article.description.isNotEmpty) Text(article.description, style: TextStyle(height: 2.0),),
 
               // related content
               // get random 10 articles

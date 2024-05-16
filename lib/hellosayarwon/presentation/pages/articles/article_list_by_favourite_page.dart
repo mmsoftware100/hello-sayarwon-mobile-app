@@ -42,12 +42,7 @@ class _ArticleListByFavouritePageState extends State<ArticleListByFavouritePage>
     print("ArticleListByCategoryPage->_onRefresh");
     String accessToken = "";
     String query = "";
-    int categoryId =  Provider.of<ArticleProvider>(context, listen: false).category.id;// ဒါဆိုရင် filter အတွက် အဆင်ပြေသွားမယ်။
-    // ဘယ်ချိန်မှာ ဒီ category filter ကို clear ပြန်လုပ်မလဲ?
-    // နောက် search လည်း ရှိသေးတယ်။ ဒါကို နောက်တစ်မျက်နှာ Search Result Page ဆိုပြီး ထပ်လုပ်ကြမလား?
-    // လက်ရှိ listing page  နှစ်ခု ရပြီ။
-    // normal listing နဲ့ category filter ပါတဲ့ listing
-
+    int categoryId =  0;
     int page = 1;
     GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page, favourite: true);
     print("favourite is ${getArticlesPara.favourite}");
@@ -144,7 +139,8 @@ class _ArticleListByFavouritePageState extends State<ArticleListByFavouritePage>
         String accessToken = "";
         String permalink = article.permalink;
         GetArticlePara getArticlePara = GetArticlePara(accessToken: accessToken, permalink: permalink);
-        Provider.of<ArticleProvider>(context, listen: false).getArticlePlz(getArticlePara: getArticlePara);
+        // No need to call api since this was already stored in local database
+        // Provider.of<ArticleProvider>(context, listen: false).getArticlePlz(getArticlePara: getArticlePara);
         Navigator.pushNamed(context, ArticleDetailPage.routeName);
       },
       child: Container(

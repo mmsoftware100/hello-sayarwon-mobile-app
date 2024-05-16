@@ -119,7 +119,7 @@ class _ArticleListByCategoryPageState extends State<ArticleListByCategoryPage> {
       onRefresh: _onRefresh,
       onLoading: _onLoading,
       child: _articleList(
-        articleList: Provider.of<ArticleProvider>(context, listen: true).articles,
+        articleList: Provider.of<ArticleProvider>(context, listen: true).articlesByCategory,
         //dataStatus: widget.dataStatus, //  Provider.of<ImirrorProvider>(context, listen: true).articleStatus,
         //pagination: widget.pagination, //  Provider.of<ImirrorProvider>(context, listen: true).paginationEntity
       ),

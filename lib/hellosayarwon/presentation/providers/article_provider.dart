@@ -223,6 +223,8 @@ class ArticleProvider extends ChangeNotifier {
     articleDataStatus = DataStatus.loading;
     notifyListeners();
 
+    await Future.delayed(Duration(seconds: 1));
+
     // doing business using use case
     final Either<Failure, Article> articleEither = await toggleFavourite(toggleFavouritePara);
     return articleEither.fold((failure) {
@@ -263,12 +265,12 @@ class ArticleProvider extends ChangeNotifier {
     List<Article> randomElements = [];
 
     // Get 3 random elements
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < ( articlesByCategory.length > 5 ? 5 : articlesByCategory.length ); i++) {
       // Get a random index
-      int randomIndex = random.nextInt(articles.length);
+      int randomIndex = random.nextInt(articlesByCategory.length);
 
       // Get the random item from the list
-      Article article = articles[randomIndex];
+      Article article = articlesByCategory[randomIndex];
 
       // Add the random item to the list of random elements
       randomElements.add(article);

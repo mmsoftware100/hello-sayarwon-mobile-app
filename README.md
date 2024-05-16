@@ -8,6 +8,12 @@ but build for all types of article contect.
 
 https://documenter.getpostman.com/view/6000182/2sA3BuWp3R
 
+## 2024-05-16 Favourite and UI
+
+- [ ] Favourite Listing ကနေ detail ကို သွားတဲ့အခါ api call ခေါ်မိနေတယ်။ favourite ဆိုရင် မခေါ်ဘူးလို့ လုပ်လို့ရမလား?
+
+ရတယ်။ api call မခေါ်ပဲ ဒီအတိုင်း set detail and navigate လုပ်လိုက်ရုံပဲ။
+
 
 ## 2024-05-15 Category UI and 
 
