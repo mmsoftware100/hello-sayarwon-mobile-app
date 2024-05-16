@@ -73,7 +73,7 @@ class _TestPageState extends State<TestPage> {
     String query = "";
     int categoryId = 0;
     int page = 1;
-    GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
+    GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page, favourite: false);
     bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
     print("TestPage->_refreshArticles status $status");
   }

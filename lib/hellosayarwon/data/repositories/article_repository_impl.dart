@@ -70,8 +70,10 @@ class ArticleRepositoryImpl implements ArticleRepository{
   Future<Either<Failure, List<Article>>> getArticles({required GetArticlesPara getArticlesPara}) async{
     try{
 
+      print("ArticleRepositoryImpl->getArticles ${getArticlesPara.favourite}");
       //
       if(getArticlesPara.favourite){
+        print("ArticleRepositoryImpl->getArticles favourite is TRUE");
         try{
           List<Article> articleList = await articleLocalDatasource.getArticleList(getArticlesPara: getArticlesPara);
           return right(articleList);

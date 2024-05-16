@@ -66,11 +66,18 @@ class DatabaseInterfaceImpl implements DatabaseInterface{
 
     if(query.isNotEmpty){
       // List<Map> maps = [];
-      List<Map> maps = await db.query(tableName,
-        where: 'favourite = ?',
-        whereArgs:  [1]
-      );
-      return maps;
+      try{
+        List<Map> maps = await db.query(tableName,
+            where: 'favourite = ?',
+            whereArgs:  [1]
+        );
+        return maps;
+      }
+      catch(exp,stackTrace){
+        print(exp);
+        print(stackTrace);
+      }
+
     }
 
 
@@ -124,6 +131,7 @@ class DatabaseInterfaceImpl implements DatabaseInterface{
     catch(exp,stackTrace){
       print(exp);
       print(stackTrace);
+      rethrow;
     }
   }
 

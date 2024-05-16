@@ -83,7 +83,7 @@ class ArticleLocalDatasourceImpl implements ArticleLocalDatasource{
       print(response);
       List<Article> articleList = [];
       for(int i=0; i< response.length; i++){
-        articleList.add(ArticleModel.fromJson(response[i]).toEntity());
+        articleList.add(ArticleModel.fromDb(response[i]).toEntity());
       }
       return articleList;
     }

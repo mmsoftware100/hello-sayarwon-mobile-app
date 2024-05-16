@@ -49,7 +49,8 @@ class _ArticleListByFavouritePageState extends State<ArticleListByFavouritePage>
     // normal listing နဲ့ category filter ပါတဲ့ listing
 
     int page = 1;
-    GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
+    GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page, favourite: true);
+    print("favourite is ${getArticlesPara.favourite}");
     bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
     print("ArticleListByCategoryPage->_onRefresh status $status");
     _refreshController.refreshCompleted();
@@ -119,7 +120,7 @@ class _ArticleListByFavouritePageState extends State<ArticleListByFavouritePage>
       onRefresh: _onRefresh,
       // onLoading: _onLoading,
       child: _articleList(
-        articleList: Provider.of<ArticleProvider>(context, listen: true).articles,
+        articleList: Provider.of<ArticleProvider>(context, listen: true).articlesByFavourite,
         //dataStatus: widget.dataStatus, //  Provider.of<ImirrorProvider>(context, listen: true).articleStatus,
         //pagination: widget.pagination, //  Provider.of<ImirrorProvider>(context, listen: true).paginationEntity
       ),

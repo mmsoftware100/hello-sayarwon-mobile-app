@@ -91,11 +91,18 @@ class ArticleProvider extends ChangeNotifier {
 
   // main methods
   Future<bool> getArticlesPlz( {required GetArticlesPara getArticlesPara}) async {
+    print("ArticleProvider->getArticlesPlz favourite ${getArticlesPara.favourite}");
     // before phase
     // update status
     articlesDataStatus = DataStatus.loading;
-    if(getArticlesPara.page == 1){
+    if(getArticlesPara.page == 1 && getArticlesPara.favourite == false && getArticlesPara.categoryId == 0){
       articles.clear();
+    }
+    if(getArticlesPara.page == 1 && getArticlesPara.favourite == true && getArticlesPara.categoryId == 0){
+      articlesByFavourite.clear();
+    }
+    if(getArticlesPara.page == 1 && getArticlesPara.categoryId > 0){
+      articlesByCategory.clear();
     }
     notifyListeners();
 
@@ -121,7 +128,17 @@ class ArticleProvider extends ChangeNotifier {
       print("get articles from server ");
       print(articlesFromServer.length);
       articlesDataStatus = DataStatus.data;
-      articles.addAll(articlesFromServer);
+      // ဘယ်မှာ သွားထည့်ကြမလဲ
+      // method တစ်ခုက state (၃) ခုကို ထိမ်းသောအခါ
+      if(getArticlesPara.favourite){
+        articlesByFavourite.addAll(articlesFromServer);
+      }
+      if(getArticlesPara.favourite == false && getArticlesPara.categoryId == 0){
+        articles.addAll(articlesFromServer);
+      }
+      if(getArticlesPara.favourite == false && getArticlesPara.categoryId > 0){
+        articlesByCategory.addAll(articlesFromServer);
+      }
       print(articles.length);
       articlesPagination.currentPage = getArticlesPara.page + 1;
       notifyListeners();
