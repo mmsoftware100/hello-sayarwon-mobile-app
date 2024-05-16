@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hellosayarwon/core/status/pagination.dart';
+import 'package:hellosayarwon/core/status/status.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_detail_page.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/components/article_description_shimmer.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -117,15 +120,19 @@ class _ArticleListPageState extends State<ArticleListPage> {
       onLoading: _onLoading,
       child: _articleList(
         articleList: Provider.of<ArticleProvider>(context, listen: true).articles,
-        //dataStatus: widget.dataStatus, //  Provider.of<ImirrorProvider>(context, listen: true).articleStatus,
-        //pagination: widget.pagination, //  Provider.of<ImirrorProvider>(context, listen: true).paginationEntity
+        dataStatus: Provider.of<ArticleProvider>(context, listen: true).articlesDataStatus, //  Provider.of<ImirrorProvider>(context, listen: true).articleStatus,
+        pagination: Provider.of<ArticleProvider>(context, listen: true).articlesPagination, //  Provider.of<ImirrorProvider>(context, listen: true).paginationEntity
       ),
     );
   }
 
-  Widget _articleList({required List<Article> articleList}){
-    //return Text(articleList.length.toString());
-    // should return listview or column ?
+  Widget _articleList({required List<Article> articleList, required DataStatus dataStatus, required Pagination pagination}){
+    // return Text(pagination.currentPage.toString());
+    // initial and loading
+    if(dataStatus == DataStatus.loading && pagination.currentPage <= 2 ) return Center(child: CircularProgressIndicator());
+    // what about error / may be offline
+
+    if(dataStatus == DataStatus.error && pagination.currentPage <= 2 ) return Center(child: Text("No Internet Connection"),);
     return ListView.separated(
         itemBuilder: (context, index) => _articleCard(article: articleList[index]),
         separatorBuilder: (context, index) => Container(),
