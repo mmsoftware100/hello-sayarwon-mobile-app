@@ -45,35 +45,95 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
 
         // category photo
 
-        // category title
-        Text(category.title),
+        Container(
+          padding: EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              // category title
+              Text(category.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0),),
 
-        // category description
-        if(Provider.of<CategoryProvider>(context, listen: true).categoryDataStatus == DataStatus.loading) ArticleDescriptionShimmer(),
-        Text(category.description),
+              // category description
+              if(Provider.of<CategoryProvider>(context, listen: true).categoryDataStatus == DataStatus.loading) ArticleDescriptionShimmer(),
+              Text(category.description, style: TextStyle( fontSize: 16.0, height: 2.0),),
 
-        // category articles
-        Text(category.articles.length.toString()),
-        Column(
-          children: [
-            ...category.articles.map((e) => _articleCard(article: e)).toList()
-          ],
-        ),
+              // category articles
+              // Text(category.articles.length.toString()),
+              Column(
+                children: [
+                  ...category.articles.map((e) => _articleCard(article: e)).toList()
+                ],
+              ),
 
-        // go to listing page button or link
-        ElevatedButton(onPressed: (){
-          // go to article listing for articles by category
-          // TODO: add category detail logic in article provider
-          Provider.of<ArticleProvider>(context, listen: false).setCategoryDetail(category);
-          // ဒီ page က သူ့ဘာသာ refresh လုပ်လိမ့်မယ်၊ အပေါ်က set လုပ်ထားတဲ့ category အပေါ် မူတည်ပြီး။
-          Navigator.pushNamed(context, ArticleListByCategoryPage.routeName);
-        }, child: Text("More Articles"))
+              SizedBox(height: 24.0,),
+              // go to listing page button or link
+              ElevatedButton(onPressed: (){
+                // go to article listing for articles by category
+                // TODO: add category detail logic in article provider
+                Provider.of<ArticleProvider>(context, listen: false).setCategoryDetail(category);
+                // ဒီ page က သူ့ဘာသာ refresh လုပ်လိမ့်မယ်၊ အပေါ်က set လုပ်ထားတဲ့ category အပေါ် မူတည်ပြီး။
+                Navigator.pushNamed(context, ArticleListByCategoryPage.routeName);
+              }, child: Text("More Articles ➡️")),
+
+              SizedBox(height: 24.0,),
+            ],
+          ),
+        )
       ],
     );
   }
 
 
   Widget _articleCard({required Article article}){
+    return InkWell(
+      onTap: (){
+        // set article detail and go to detail page
+        Provider.of<ArticleProvider>(context, listen: false).setArticleDetail(article);
+        String accessToken = "";
+        String permalink = article.permalink;
+        GetArticlePara getArticlePara = GetArticlePara(accessToken: accessToken, permalink: permalink);
+        Provider.of<ArticleProvider>(context, listen: false).getArticlePlz(getArticlePara: getArticlePara);
+        Navigator.pushNamed(context, ArticleDetailPage.routeName);
+      },
+      child: Container(
+        height: 150,
+        margin: const EdgeInsets.all(8.0),
+        decoration:   BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.circular(8.0)
+        ),
+        child:  Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8.0),
+                    bottomLeft: Radius.circular(8.0)
+                ),
+                child: CachedNetworkImage(
+                  height: 150,
+                  imageUrl: article.thumbnail,
+                  progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Expanded(
+                flex: 3,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(article.title),
+                  ),
+                )
+            )
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _articleCard2({required Article article}){
     return InkWell(
       onTap: (){
         // set article detail and go to detail page

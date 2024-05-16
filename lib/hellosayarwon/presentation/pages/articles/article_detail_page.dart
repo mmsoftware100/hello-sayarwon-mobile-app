@@ -69,11 +69,11 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
 
               if(Provider.of<ArticleProvider>(context, listen: true).articleDataStatus == DataStatus.loading && Provider.of<ArticleProvider>(context, listen: true).article.description.isEmpty) ArticleDescriptionShimmer(),
               // TODO: show loading shimmer effect on loading
-              if(Provider.of<ArticleProvider>(context, listen: true).articleDataStatus == DataStatus.data || Provider.of<ArticleProvider>(context, listen: true).article.description.isNotEmpty) Text(article.description, style: TextStyle(height: 2.0),),
+              if(Provider.of<ArticleProvider>(context, listen: true).articleDataStatus == DataStatus.data || Provider.of<ArticleProvider>(context, listen: true).article.description.isNotEmpty) Text(article.description, style: TextStyle(fontSize: 16.0, height: 2.0),),
 
               // related content
               // get random 10 articles
-              Text("Related Articels"),
+              Text("Related Articles"),
               Column(
                 children: [
                   ...Provider.of<ArticleProvider>(context, listen: true).getRandomArticles().map((e) => _articleCard(article: e)).toList()
@@ -89,7 +89,58 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
     );
   }
 
+
   Widget _articleCard({required Article article}){
+    return InkWell(
+      onTap: (){
+        // set article detail and go to detail page
+        Provider.of<ArticleProvider>(context, listen: false).setArticleDetail(article);
+        String accessToken = "";
+        String permalink = article.permalink;
+        GetArticlePara getArticlePara = GetArticlePara(accessToken: accessToken, permalink: permalink);
+        Provider.of<ArticleProvider>(context, listen: false).getArticlePlz(getArticlePara: getArticlePara);
+        Navigator.pushNamed(context, ArticleDetailPage.routeName);
+      },
+      child: Container(
+        height: 150,
+        margin: const EdgeInsets.all(8.0),
+        decoration:   BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.circular(8.0)
+        ),
+        child:  Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8.0),
+                    bottomLeft: Radius.circular(8.0)
+                ),
+                child: CachedNetworkImage(
+                  height: 150,
+                  imageUrl: article.thumbnail,
+                  progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Expanded(
+                flex: 3,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(article.title),
+                  ),
+                )
+            )
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _articleCard2({required Article article}){
     return InkWell(
       onTap: (){
         // set article detail and go to detail page
@@ -126,6 +177,8 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
       ),
     );
   }
+
+
 
 
 }

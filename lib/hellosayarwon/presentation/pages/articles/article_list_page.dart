@@ -129,10 +129,10 @@ class _ArticleListPageState extends State<ArticleListPage> {
   Widget _articleList({required List<Article> articleList, required DataStatus dataStatus, required Pagination pagination}){
     // return Text(pagination.currentPage.toString());
     // initial and loading
-    if(dataStatus == DataStatus.loading && pagination.currentPage <= 2 ) return Center(child: CircularProgressIndicator());
+    if(dataStatus == DataStatus.loading && pagination.currentPage <= 1 ) return Center(child: CircularProgressIndicator());
     // what about error / may be offline
 
-    if(dataStatus == DataStatus.error && pagination.currentPage <= 2 ) return Center(child: Text("No Internet Connection"),);
+    if(dataStatus == DataStatus.error && pagination.currentPage <= 1 ) return Center(child: Text("No Internet Connection"),);
     return ListView.separated(
         itemBuilder: (context, index) => _articleCard(article: articleList[index]),
         separatorBuilder: (context, index) => Container(),

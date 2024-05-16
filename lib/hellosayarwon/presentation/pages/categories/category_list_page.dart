@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hellosayarwon/core/status/status.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/category.dart';
 import 'package:hellosayarwon/hellosayarwon/domain/entities/paras/get_category_para.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_detail_page.dart';
@@ -116,14 +117,18 @@ class _CategoryListPageState extends State<CategoryListPage> {
       //onLoading: _onLoading,
       child: _categoryList(
         categoryList: Provider.of<CategoryProvider>(context, listen: true).categories,
-        //dataStatus: widget.dataStatus, //  Provider.of<ImirrorProvider>(context, listen: true).articleStatus,
+        dataStatus: Provider.of<CategoryProvider>(context, listen: true).categoriesDataStatus, //  Provider.of<ImirrorProvider>(context, listen: true).articleStatus,
         //pagination: widget.pagination, //  Provider.of<ImirrorProvider>(context, listen: true).paginationEntity
       ),
     );
   }
 
-  Widget _categoryList({required List<Category> categoryList}){
-    // should return listview or column ?
+  Widget _categoryList({required List<Category> categoryList, required DataStatus dataStatus}){
+    if(dataStatus == DataStatus.loading) return Center(child: CircularProgressIndicator());
+    // what about error / may be offline
+
+    if(dataStatus == DataStatus.error) return Center(child: Text("No Internet Connection"),);
+
     return ListView.separated(
         itemBuilder: (context, index) => _categoryCard(category: categoryList[index]),
         separatorBuilder: (context, index) => Container(),
