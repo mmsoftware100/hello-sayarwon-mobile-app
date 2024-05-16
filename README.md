@@ -124,6 +124,22 @@ loading ပြေပးဖို့ လိုမယ်။
 main listing မှာ။
 
 
+basic version မှာ ဘာတွေပါမလဲ?
+
+Premium ဆန်တဲ့ UI/UX တော့ ပေးထားရမယ်။
+Yeah, i mean shimmer with detailed place.
+
+
+
+### Release Note
+
+- [ ] App Icon
+- [ ] Splash Screen
+- [ ] Shimmer effect loading on article listing
+- [ ] New HOme Page
+- [ ] Sale post / sharing 
+
+
 
 Hello Sayarwon ရဲ့
 အခြား နိုင်ငံက ဗားရှင်းတွေလည်း လုပ်ရမယ်။
