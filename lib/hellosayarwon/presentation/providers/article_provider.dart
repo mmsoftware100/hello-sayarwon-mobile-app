@@ -83,7 +83,8 @@ class ArticleProvider extends ChangeNotifier {
     // articles ကိုပဲ ဆက်သုံးကြမလား?
     // state ခွဲရင် method ခွဲရမလား?
     // ခွဲရင် method တွေ များလာမှာ ၊ မခွဲရင် method တစ်ခုက state နှစ်ခု သုံးခုကို ကိုင်တွယ်ရမယ်။
-    articles.clear();
+    // articles.clear();
+    articlesByCategory.clear();
     // လက်ရှိ state တစ်ခုပဲ သုံးတာပေါ့။
 
     notifyListeners();
@@ -96,12 +97,15 @@ class ArticleProvider extends ChangeNotifier {
     // update status
     articlesDataStatus = DataStatus.loading;
     if(getArticlesPara.page == 1 && getArticlesPara.favourite == false && getArticlesPara.categoryId == 0){
+      print("main listing cleared");
       articles.clear();
     }
     if(getArticlesPara.page == 1 && getArticlesPara.favourite == true && getArticlesPara.categoryId == 0){
+      print("fav listing cleared");
       articlesByFavourite.clear();
     }
     if(getArticlesPara.page == 1 && getArticlesPara.categoryId > 0){
+      print("category listing cleared");
       articlesByCategory.clear();
     }
     notifyListeners();

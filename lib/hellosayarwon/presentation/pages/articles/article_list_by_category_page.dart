@@ -50,6 +50,7 @@ class _ArticleListByCategoryPageState extends State<ArticleListByCategoryPage> {
 
     int page = 1;
     GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
+    print("trying to get category listing for ${categoryId}");
     bool status = await Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
     print("ArticleListByCategoryPage->_onRefresh status $status");
     _refreshController.refreshCompleted();

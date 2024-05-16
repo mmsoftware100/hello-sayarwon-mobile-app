@@ -114,6 +114,16 @@ home page , category နဲ့ favourite ပဲ လိုတာ။
 
 About မှာ ဘာတွေရေး။
 
+Chat GPT ကို 
+CoPilot ကို မေးပြီး ရေးခိုင်းရမယ်။
+
+
+** Category Detail -> listing ကို ဝင်ပြီး ပြန်ထွက်ရင် home listing မှာ အကုန်ပျောက်နေပြီ။ **
+
+loading ပြေပးဖို့ လိုမယ်။
+main listing မှာ။
+
+
 
 Hello Sayarwon ရဲ့
 အခြား နိုင်ငံက ဗားရှင်းတွေလည်း လုပ်ရမယ်။

@@ -124,6 +124,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
   }
 
   Widget _articleList({required List<Article> articleList}){
+    //return Text(articleList.length.toString());
     // should return listview or column ?
     return ListView.separated(
         itemBuilder: (context, index) => _articleCard(article: articleList[index]),
