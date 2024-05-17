@@ -31,8 +31,12 @@ category, author, updated at
 
 - [x] Category On Tap ကို လုပ်မယ်။
 - [x] Search result
-- [ ] Article card on tap
+- [x] Article card on tap
 - [ ] all articles loading
+
+
+article loading ကို home page မှာ ပြပေးဖို့။
+
 
 
 on search လုပ်ရင် search page ကို သွားမယ်။

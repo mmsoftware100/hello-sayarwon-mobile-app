@@ -187,7 +187,7 @@ class ArticleProvider extends ChangeNotifier {
       // success phase
       print("get articles from server ");
       print(articlesFromServer.length);
-      articlesDataStatus = DataStatus.data;
+      // articlesDataStatus = DataStatus.data;
       // ဘယ်မှာ သွားထည့်ကြမလဲ
       // method တစ်ခုက state (၃) ခုကို ထိမ်းသောအခါ
       // favourite listing

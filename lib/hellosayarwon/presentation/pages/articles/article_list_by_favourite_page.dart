@@ -131,7 +131,118 @@ class _ArticleListByFavouritePageState extends State<ArticleListByFavouritePage>
     );
   }
 
+
   Widget _articleCard({required Article article}){
+    /*
+      String dateTimeString = '2024-04-30 12:00:00'; // Example DateTime string
+      print(dateTimeToDaysAgo(dateTimeString)); // Output: 3 days ago
+     */
+    return InkWell(
+      onTap: () {
+        Provider.of<ArticleProvider>(context, listen: false).setArticleDetail(article);
+        //String accessToken = "";
+        //String permalink = article.permalink;
+        //GetArticlePara getArticlePara = GetArticlePara(accessToken: accessToken, permalink: permalink);
+        // Provider.of<ArticleProvider>(context, listen: false).getArticlePlz(getArticlePara: getArticlePara);
+        Navigator.pushNamed(context, ArticleDetailPage.routeName);
+
+        //Provider.of<ImirrorProvider>(context, listen: false).setArticleDetail(article);
+        //Navigator.pushNamed(context, ImirrorDetailPage.routeName);
+      },
+      child: Container(
+        padding: EdgeInsets.all(8.0),
+        margin: EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(8.0)
+
+        ),
+        child: Row(
+          children: [
+            Expanded(
+                flex: 2,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: CachedNetworkImage(
+                    height: 80,
+                    imageUrl: article.thumbnail,
+                    fit: BoxFit.cover,
+                    progressIndicatorBuilder: (context, url, downloadProgress) =>
+                        Container(
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator(
+                            value: downloadProgress.progress,
+                          ),
+                        ),
+                    errorWidget: (_,__,___) => Icon(Icons.image),
+                  ),
+                )
+            ),
+            Expanded(
+              flex: 3,
+              child: Container(
+                margin: EdgeInsets.fromLTRB(8.0, 0, 0, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(article.title),
+                    SizedBox(height: 4.0,),
+                    Text(_dateTimeToDaysAgo(article.updatedAt), style: TextStyle(color: Colors.grey, fontSize: 12),)
+                  ],
+                ),
+              ),
+            )
+
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _dateTimeToDaysAgo(String dateTimeString) {
+    // Parse the DateTime string into a DateTime object
+    DateTime dateTime = DateTime.parse(dateTimeString);
+
+    // Calculate the difference between the parsed DateTime and the current DateTime
+    Duration difference = DateTime.now().difference(dateTime);
+
+    // Convert the difference into days
+    int days = difference.inDays;
+
+    // Format the result as "X days ago"
+    String formattedResult = '$days days ago';
+
+
+    // hours
+    if(days == 0){
+      days = difference.inHours;
+      // Format the result as "X days ago"
+      formattedResult = '$days hours ago';
+
+      // minutes
+      if(days == 0){
+        days = difference.inMinutes;
+        // Format the result as "X days ago"
+        formattedResult = '$days minutes ago';
+
+
+
+        // seconds
+        if(days == 0){
+          days = difference.inSeconds;
+          // Format the result as "X days ago"
+          formattedResult = '$days seconds ago';
+        }
+
+      }
+
+    }
+
+
+    return formattedResult;
+  }
+  Widget _articleCard2({required Article article}){
     return InkWell(
       onTap: (){
         // set article detail and go to detail page

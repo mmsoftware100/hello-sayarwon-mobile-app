@@ -13,6 +13,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../../../core/status/status.dart';
 import '../../../data/const/constants.dart';
 import '../../../domain/entities/paras/get_article_para.dart';
+import '../../../domain/entities/paras/get_articles_para.dart';
 import '../../../domain/entities/paras/get_category_para.dart';
 import '../articles/article_detail_page.dart';
 import '../categories/category_detail_page.dart';
@@ -48,13 +49,16 @@ class _NewHomePageState extends State<NewHomePage> {
               dataStatus: Provider.of<CategoryProvider>(context, listen: true).categoriesDataStatus,
               pagination: Provider.of<CategoryProvider>(context, listen: true).categoriesPagination
           ),
+          //Text(Provider.of<ArticleProvider>(context, listen: true).articlesPagination.currentPage.toString()),
+          //Text(Provider.of<ArticleProvider>(context, listen: true).articlesDataStatus.toString()),
           _articleList(
               articleList: Provider.of<ArticleProvider>(context, listen: true).articles,
               dataStatus: Provider.of<ArticleProvider>(context, listen: true).articlesDataStatus,
               pagination: Provider.of<ArticleProvider>(context, listen: true).articlesPagination
           ),
           // Expanded(child: _articleList())
-          _allListing(),
+          Provider.of<ArticleProvider>(context, listen: true).articles.isNotEmpty ?  _allListing() : Container(),
+          SizedBox(height: 8.0,)
         ],
       ),
     );
@@ -94,7 +98,7 @@ class _NewHomePageState extends State<NewHomePage> {
             children: [
               Text("Hello ဆရာဝန်", style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold, color: Colors.white),),
               SizedBox(height: 8.0,),
-              Text("သွားလာ၊ စားသောက်၊ နေထိုင်ရေး\nလွယ်ကူမနှေး ဝန်ဆောင်ပေး", textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Colors.white),),
+              Text("ပိုမို ကျန်းမာပျော်ရွှင်စေဖို့\nစိတ်ချရသော ကျန်းမာရေး အချက်အလက်များ", textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Colors.white, height: 1.5),),
 
               SizedBox(height: 8.0,),
               _searchInput()
@@ -392,7 +396,7 @@ class _NewHomePageState extends State<NewHomePage> {
         onPressed: (){
           Navigator.pushNamed(context, ArticleListPage.routeName);
         },
-        child: Text("List All >>")
+        child: Text("All Articles")
     );
   }
 
@@ -405,8 +409,16 @@ class _NewHomePageState extends State<NewHomePage> {
         Text(Provider.of<CategoryProvider>(context, listen: true).categoriesSingleMessageFailure.message),
         SizedBox(height: 8.0,),
         ElevatedButton(onPressed: (){
-          int pageNo = 1;
-          //Provider.of<ImirrorProvider>(context, listen: false).selectCategoryListPlz(accessToken: "accessToken", pageNo: pageNo, projectId: projectId);
+
+          String accessToken = "";
+          String query = "";
+          int categoryId = 0; // Provider.of<ArticleProvider>(context, listen: false).category.id;// ဒါဆိုရင် filter အတွက် အဆင်ပြေသွားမယ်။
+          // ဘယ်ချိန်မှာ ဒီ category filter ကို clear ပြန်လုပ်မလဲ?
+          // နောက် search လည်း ရှိသေးတယ်။
+          int page = 1;
+          GetArticlesPara getArticlesPara = GetArticlesPara(accessToken: accessToken, query: query, categoryId: categoryId, page: page);
+          Provider.of<ArticleProvider>(context, listen: false).getArticlesPlz(getArticlesPara: getArticlesPara);
+
         }, child: Text("Refresh"))
       ],
     );
