@@ -9,6 +9,7 @@ import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_search_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/categories/category_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/home/home_page.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/home/new_home_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/category_provider.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +33,7 @@ class _TestPageState extends State<TestPage> {
       ),
       body: ListView(
         children: [
+          ListTile(title: const Text("New Home Page"), onTap: _goToNewPage, ),
           ListTile(title: const Text("Home Page"), onTap: _goToHome, ),
           Divider(),
           ListTile(title: const Text("Go To Listing"), onTap: _goToListing, ),
@@ -55,6 +57,10 @@ class _TestPageState extends State<TestPage> {
         ],
       ),
     );
+  }
+
+  void _goToNewPage(){
+    Navigator.pushNamed(context, NewHomePage.routeName);
   }
 
   void _goToHome(){

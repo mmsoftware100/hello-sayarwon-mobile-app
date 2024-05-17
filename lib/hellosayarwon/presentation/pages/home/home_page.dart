@@ -5,6 +5,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_by_favourite_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_list_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/categories/category_list_page.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/home/new_home_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/const/constants.dart';
@@ -28,7 +29,8 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    ArticleListPage(),
+    NewHomePage(),
+    // ArticleListPage(),
     CategoryListPage(),
     ArticleListByFavouritePage(),
     Center(child: Text("This is unofficial mobile app of Hello Sayarwon"),),

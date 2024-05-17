@@ -10,6 +10,7 @@ import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/articles/article_search_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/categories/category_detail_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/categories/category_list_page.dart';
+import 'package:hellosayarwon/hellosayarwon/presentation/pages/home/new_home_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/pages/test/test_page.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/article_provider.dart';
 import 'package:hellosayarwon/hellosayarwon/presentation/providers/category_provider.dart';
@@ -166,7 +167,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const MyHomePage(title: 'Hello Sayarwon'),
-      initialRoute: HomePage.routeName,
+      initialRoute: TestPage.routeName,
       routes: {
         HomePage.routeName : (context) => const HomePage(),
         ArticleListPage.routeName : (context) => const ArticleListPage(),
@@ -177,6 +178,7 @@ class MyApp extends StatelessWidget {
         ArticleListByCategoryPage.routeName : (context) => const ArticleListByCategoryPage(),
         ArticleSearchPage.routeName : (context) => const ArticleSearchPage(),
         ArticleListByFavouritePage.routeName : (context) => const ArticleListByFavouritePage(),
+        NewHomePage.routeName : (context) => const NewHomePage(),
       },
     );
   }

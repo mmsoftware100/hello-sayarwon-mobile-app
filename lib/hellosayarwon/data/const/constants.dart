@@ -50,3 +50,4 @@ String createArticleSql = '''
 ''';
 
 const String FCM_TOPIC = "hello_sayarwon";
+const String COVER_PHOTO_URL = "https://i.ibb.co/VBJ3F5j/Screenshot-2024-05-17-at-09-42-28.png"; // "https://i.ibb.co/P1TJwmq/0-02-06-bf71cf393816c35c57a578bfe00648591208636281e0f88d953e93bf2a11652e-217c7df7300.jpg"; //  "https://i.ibb.co/p009GCH/Naypyidaw-Tours.jpg";
