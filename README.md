@@ -8,6 +8,28 @@ but build for all types of article contect.
 
 https://documenter.getpostman.com/view/6000182/2sA3BuWp3R
 
+
+## 2024-05-17 New Home Page UI 
+
+- [ ] New Home Page
+- [ ] FCM Detail Page
+- [ ] About Page
+
+
+2 Hr.
+
+- [0830] UP and Running
+ 
+article card မှာ ဒေတာ ပြည့်ပြည့်စုံစုံလေး ပြရမယ်။
+
+category, author, updated at
+ဒီထဲက ဘာရမလဲ
+ရတာကို အဆင်ပြေအောင် ပြရမယ်။
+
+နောက် Category Card ကို Refactor လုပ်ရမယ်။
+
+
+
 ## 2024-05-16 Favourite and UI
 
 - [x] Favourite Listing ကနေ detail ကို သွားတဲ့အခါ api call ခေါ်မိနေတယ်။ favourite ဆိုရင် မခေါ်ဘူးလို့ လုပ်လို့ရမလား?
@@ -46,7 +68,7 @@ flutter_local_notifications: ^16.3.2
 
 Firebase Panel မှာ json file  သွားယူမယ်။
 
-com.mmsoftware100.hellosayarwon
+com.mmsoftware100.hellosayarwon.hellosayarwon
 
 
 project level gradle
