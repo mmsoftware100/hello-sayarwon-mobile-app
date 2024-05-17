@@ -12,6 +12,8 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/status/status.dart';
 import '../../../data/const/constants.dart';
+import '../../../domain/entities/paras/get_category_para.dart';
+import '../categories/category_detail_page.dart';
 
 class NewHomePage extends StatefulWidget {
   static final String routeName = '/NewHomePage';
@@ -204,6 +206,13 @@ class _NewHomePageState extends State<NewHomePage> {
     return InkWell(
       onTap: () {
         Provider.of<CategoryProvider>(context, listen: false).setCategoryDetail(category);
+        String accessToken = "";
+        String permalink = category.permalink;
+        GetCategoryPara getCategoryPara = GetCategoryPara(accessToken: accessToken, permalink: permalink);
+        Provider.of<CategoryProvider>(context, listen: false).getCategoryPlz(getCategoryPara: getCategoryPara);
+        Navigator.pushNamed(context, CategoryDetailPage.routeName);
+
+        // Provider.of<CategoryProvider>(context, listen: false).setCategoryDetail(category);
         // Navigator.pushNamed(context, ImirrorArticleListForCategoryPage.routeName);
 
         // Provider.of<WpContentProvider>(context, listen: false)
@@ -229,7 +238,14 @@ class _NewHomePageState extends State<NewHomePage> {
         ),
         child: Row(
           children: [
-            Icon(Icons.map_outlined),
+            // Icon(Icons.map_outlined),
+            CachedNetworkImage(
+              // width: MediaQuery.of(context).size.width / 4,
+              imageUrl: category.thumbnail,
+              progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              fit: BoxFit.contain,
+            ),
             SizedBox(width: 8.0,),
             Center(child: Text(category.title)),
           ],

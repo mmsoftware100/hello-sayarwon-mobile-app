@@ -29,6 +29,10 @@ category, author, updated at
 နောက် Category Card ကို Refactor လုပ်ရမယ်။
 
 
+- [ ] Category On Tap ကို လုပ်မယ်။
+- [ ] Search result
+- [ ] Article card on tap
+- [ ] all articles loading
 
 ## 2024-05-16 Favourite and UI
 
