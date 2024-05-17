@@ -26,6 +26,17 @@ class _ArticleSearchPageState extends State<ArticleSearchPage> {
   final RefreshController _refreshController = RefreshController(initialRefresh:  false);
 
 
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    tec.text = Provider.of<ArticleProvider>(context, listen: false).searchKeyword;
+    Future.delayed(Duration(seconds: 0),(){
+      _refreshController.requestRefresh();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,6 +99,7 @@ class _ArticleSearchPageState extends State<ArticleSearchPage> {
             onFieldSubmitted: (_){
               _refreshController.requestRefresh();
             },
+            // initialValue: Provider.of<ArticleProvider>(context, listen: false).searchKeyword,
             controller: tec,
             decoration: InputDecoration(
               // outline border

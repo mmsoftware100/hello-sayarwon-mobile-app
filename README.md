@@ -29,11 +29,17 @@ category, author, updated at
 နောက် Category Card ကို Refactor လုပ်ရမယ်။
 
 
-- [ ] Category On Tap ကို လုပ်မယ်။
-- [ ] Search result
+- [x] Category On Tap ကို လုပ်မယ်။
+- [x] Search result
 - [ ] Article card on tap
 - [ ] all articles loading
 
+
+on search လုပ်ရင် search page ကို သွားမယ်။
+
+
+
+Local State ကို ပိုင်ပိုင်နိုင်နိုင် ထိမ်းထားဖို့ လိုမယ်
 ## 2024-05-16 Favourite and UI
 
 - [x] Favourite Listing ကနေ detail ကို သွားတဲ့အခါ api call ခေါ်မိနေတယ်။ favourite ဆိုရင် မခေါ်ဘူးလို့ လုပ်လို့ရမလား?

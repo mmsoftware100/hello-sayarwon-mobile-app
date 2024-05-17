@@ -12,7 +12,9 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/status/status.dart';
 import '../../../data/const/constants.dart';
+import '../../../domain/entities/paras/get_article_para.dart';
 import '../../../domain/entities/paras/get_category_para.dart';
+import '../articles/article_detail_page.dart';
 import '../categories/category_detail_page.dart';
 
 class NewHomePage extends StatefulWidget {
@@ -146,6 +148,7 @@ class _NewHomePageState extends State<NewHomePage> {
 
             //MirrorCategory category = MirrorCategory(id: 1000, name: "Search Result", createdAt: "createdAt", updatedAt: "");
             //Provider.of<ImirrorProvider>(context, listen: false).setCategoryDetail(category); ျိ်ိ်dsdfsdf
+            Provider.of<ArticleProvider>(context, listen: false).setSearchKeyword(_);
             Navigator.pushNamed(context, ArticleSearchPage.routeName);
 
           },
@@ -323,6 +326,13 @@ class _NewHomePageState extends State<NewHomePage> {
      */
     return InkWell(
       onTap: () {
+        Provider.of<ArticleProvider>(context, listen: false).setArticleDetail(article);
+        String accessToken = "";
+        String permalink = article.permalink;
+        GetArticlePara getArticlePara = GetArticlePara(accessToken: accessToken, permalink: permalink);
+        Provider.of<ArticleProvider>(context, listen: false).getArticlePlz(getArticlePara: getArticlePara);
+        Navigator.pushNamed(context, ArticleDetailPage.routeName);
+
         //Provider.of<ImirrorProvider>(context, listen: false).setArticleDetail(article);
         //Navigator.pushNamed(context, ImirrorDetailPage.routeName);
       },

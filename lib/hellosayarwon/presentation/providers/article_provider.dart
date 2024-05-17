@@ -90,6 +90,11 @@ class ArticleProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setSearchKeyword(String query){
+    searchKeyword = query;
+    notifyListeners();
+  }
+
   // main methods
   Future<bool> getArticlesPlz( {required GetArticlesPara getArticlesPara}) async {
     print("ArticleProvider->getArticlesPlz ${getArticlesPara.favourite}");
