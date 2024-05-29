@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>52961655254-3kok0ednah004cinnqteipk4nm0qghov.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.52961655254-3kok0ednah004cinnqteipk4nm0qghov</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>52961655254-g69m9jb7ikre8s4uno61l2ps3lav9ed7.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAePA1Acay_Ft3v8KephgBAmfaDaOS9RiY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>52961655254</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mmsoftware100.hellosayarwon.hellosayarwon</string>
+	<key>PROJECT_ID</key>
+	<string>golden-day-mm</string>
+	<key>STORAGE_BUCKET</key>
+	<string>golden-day-mm.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:52961655254:ios:89cd4aa0c7c20e94cf8c77</string>
+	<key>DATABASE_URL</key>
+	<string>https://golden-day-mm-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>
