@@ -9,6 +9,16 @@ but build for all types of article contect.
 https://documenter.getpostman.com/view/6000182/2sA3BuWp3R
 
 
+## 2024-05-31 Hello Sayarwon Deployment
+
+- [ ] Screenshots
+- [ ] Description and other text
+- [ ] Terms and conditions, privacy policy
+- [ ] Submit
+
+- [ ] Next Moves ( Multiple Language, Fully Offline Capabilities , for listing and detail )
+
+
 ## 2024-05-17 New Home Page UI 
 
 - [ ] New Home Page
@@ -38,6 +48,11 @@ category, author, updated at
 article loading ကို home page မှာ ပြပေးဖို့။
 
 
+
+```bash
+rm Podfile.lock
+rm -rf Pods/
+```
 
 on search လုပ်ရင် search page ကို သွားမယ်။
 
