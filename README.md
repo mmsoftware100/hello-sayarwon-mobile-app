@@ -11,6 +11,7 @@ https://documenter.getpostman.com/view/6000182/2sA3BuWp3R
 
 ## 2024-05-31 Hello Sayarwon Deployment
 
+- [ ] About Section မှာ စာအပြည့်အစုံ ရေးပေးထားရမယ်။ Hello Sayarwon ပဲ ဖြစ်ဖြစ်။
 - [ ] Screenshots
 - [ ] Description and other text
 - [ ] Terms and conditions, privacy policy

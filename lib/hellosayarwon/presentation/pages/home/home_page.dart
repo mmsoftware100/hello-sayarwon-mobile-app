@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
     // ArticleListPage(),
     CategoryListPage(),
     ArticleListByFavouritePage(),
-    Center(child: Text("This is unofficial mobile app of Hello Sayarwon"),),
+    Center(child: Text("This is unofficial mobile app for Hello Sayarwon"),),
     Center(child: Text("2"),),
     Center(child: Text("3"),),
     Center(child: Text("4"),),
