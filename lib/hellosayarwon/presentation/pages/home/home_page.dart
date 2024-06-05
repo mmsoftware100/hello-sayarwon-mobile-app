@@ -33,7 +33,19 @@ class _HomePageState extends State<HomePage> {
     // ArticleListPage(),
     CategoryListPage(),
     ArticleListByFavouritePage(),
-    Center(child: Text("This is unofficial mobile app for Hello Sayarwon"),),
+    Container(
+      padding: EdgeInsets.all(8.0),
+      child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(child: Container()),
+        Text("မသက်ဆိုင်ကြောင်း ရှင်းလင်းချက်", style: TextStyle(fontWeight: FontWeight.bold),),
+        Text("Hello Health Group သည် ဆေးပညာအကြံဉာဏ်များ၊ ရောဂါရှာဖွေမှုများနှင့် ကုသမှုများ မပြုလုပ်ပေးပါ။", textAlign: TextAlign.center,),
+        Text("This is unofficial mobile app for Hello Sayarwon", style: TextStyle(color: Colors.grey),),
+        Expanded(child: Container()),
+      ],
+    ),),
     Center(child: Text("2"),),
     Center(child: Text("3"),),
     Center(child: Text("4"),),
