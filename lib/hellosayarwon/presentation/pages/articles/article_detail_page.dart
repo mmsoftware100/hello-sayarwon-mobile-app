@@ -71,6 +71,8 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
               // TODO: show loading shimmer effect on loading
               if(Provider.of<ArticleProvider>(context, listen: true).articleDataStatus == DataStatus.data || Provider.of<ArticleProvider>(context, listen: true).article.description.isNotEmpty) Text(article.description, style: TextStyle(fontSize: 16.0, height: 2.0),),
 
+              Text("Sources"),
+              Text(article.sources),
               // related content
               // get random 10 articles
               Text("Related Articles"),

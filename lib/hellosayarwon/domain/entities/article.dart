@@ -22,6 +22,10 @@ class Article{
   // favourite
   int favourite;
 
+  // sources
+  String sources;
+
+
   // meta data
   String createdAt;
   String updatedAt;
@@ -38,6 +42,7 @@ class Article{
     required this.categoryId,
     required this.favourite,
     required this.category,
+    required this.sources,
     required this.createdAt,
     required this.updatedAt
   });
@@ -53,6 +58,7 @@ class Article{
       categoryId: 0,
       favourite: 0,
       category : Category.sample,
+      sources:"",
       createdAt:"createdAt",
       updatedAt:"updatedAt",
     );

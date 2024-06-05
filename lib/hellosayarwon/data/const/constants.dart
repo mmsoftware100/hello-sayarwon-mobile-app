@@ -17,7 +17,7 @@ const String categoriesEndpoint = '$apiVersion/categories';
 
 // database
 const String dbName = 'hello_sayarwon';
-const int dbVersion = 1;
+const int dbVersion = 2;
 
 const String articleTableName = 'articles';
 
@@ -30,6 +30,7 @@ String articleTableColumnThumbnail = "thumbnail";
 String articleTableColumnPermalink = "permalink";
 String articleTableColumnCategoryId = "category_id";
 String articleTableColumnFavourite = "favourite";
+String articleTableColumnSources = "sources";
 String articleTableColumnCreatedAt = "created_at";
 String articleTableColumnUpdatedAt = "updated_at";
 // table creation query
@@ -44,6 +45,7 @@ String createArticleSql = '''
         $articleTableColumnPermalink TEXT,
         $articleTableColumnCategoryId INTEGER,
         $articleTableColumnFavourite INTEGER,
+        $articleTableColumnSources TEXT,
         $articleTableColumnCreatedAt TEXT,
         $articleTableColumnUpdatedAt TEXT
       )

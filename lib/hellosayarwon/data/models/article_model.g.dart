@@ -17,6 +17,7 @@ ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) => ArticleModel(
           ? null
           : CategoryModel.fromJson(json['users'] as Map<String, dynamic>),
       favourite: (json['favourite'] as num?)?.toInt() ?? 0,
+      sources: json['sources'] as String? ?? '',
       createdAt: json['post_date_utc'] as String? ?? '',
       updatedAt: json['post_modified_utc'] as String? ?? '',
     );
@@ -31,6 +32,7 @@ Map<String, dynamic> _$ArticleModelToJson(ArticleModel instance) =>
       'name': instance.categoryId,
       'favourite': instance.favourite,
       'users': instance.category?.toJson(),
+      'sources': instance.sources,
       'post_date_utc': instance.createdAt,
       'post_modified_utc': instance.updatedAt,
     };

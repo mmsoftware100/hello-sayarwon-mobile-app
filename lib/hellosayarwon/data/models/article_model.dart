@@ -39,6 +39,10 @@ class ArticleModel {
   @JsonKey(name: 'users' , defaultValue: null)
   CategoryModel? category;
 
+  @JsonKey(name: 'sources' , defaultValue: "")
+  String sources;
+
+
   @JsonKey(name: 'post_date_utc' , defaultValue: "")
   String createdAt;
 
@@ -58,6 +62,7 @@ class ArticleModel {
     required this.categoryId,
     required this.category,
     required this.favourite,
+    required this.sources,
     required this.createdAt,
     required this.updatedAt
   });
@@ -77,6 +82,7 @@ class ArticleModel {
         categoryId: categoryId,
         favourite: favourite,
         category: category?.toEntity() ?? Category.sample,
+        sources: sources,
         createdAt: createdAt,
         updatedAt: updatedAt
     );
@@ -97,6 +103,7 @@ class ArticleModel {
       'permalink' : permalink,
       'category_id' : categoryId,
       'favourite' : favourite,
+      'sources' : sources,
       'created_at' : createdAt,
       'updated_at' : updatedAt,
       // how about Contact Data List ?
@@ -121,6 +128,7 @@ class ArticleModel {
         categoryId: json["category_id"],
         category: CategoryModel.fromJson({}),
         favourite: json["favourite"],
+        sources: json["sources"],
         createdAt: json["created_at"],
         updatedAt: json["updated_at"]
     );
@@ -130,8 +138,6 @@ class ArticleModel {
 
     return article;
   }
-
-
 
   // all serialization rules rely HERE
   factory ArticleModel.fromEntity(Article article){
@@ -143,6 +149,7 @@ class ArticleModel {
         categoryId: article.categoryId,
         favourite: article.favourite,
         category: CategoryModel.fromJson({}),  // TODO: need to convert Category Entity to Category Model
+        sources: article.sources,
         createdAt: article.createdAt,
         updatedAt: article.updatedAt,
         permalink: article.permalink,
