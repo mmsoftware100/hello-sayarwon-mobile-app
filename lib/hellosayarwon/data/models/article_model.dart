@@ -82,7 +82,7 @@ class ArticleModel {
         categoryId: categoryId,
         favourite: favourite,
         category: category?.toEntity() ?? Category.sample,
-        sources: sources,
+        sources: removeHtmlTags(sources),
         createdAt: createdAt,
         updatedAt: updatedAt
     );
