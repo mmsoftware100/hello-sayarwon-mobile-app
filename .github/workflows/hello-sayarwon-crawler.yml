@@ -1,0 +1,41 @@
+# Security review required before enabling automatic schedules.
+# No third-party actions, no stored secrets, no pull_request_target.
+name: Hello Sayarwon JSON Archive
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: hello-sayarwon-archive
+  cancel-in-progress: false
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout trusted default branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git clone --depth 1 "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" repo
+          cd repo
+          git remote set-url origin "https://github.com/${GITHUB_REPOSITORY}.git"
+      - name: Crawl public API
+        working-directory: repo
+        run: python3 crawler/crawl.py --max-pages 2000 --delay 2
+      - name: Commit JSON changes only
+        working-directory: repo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data/hello-sayarwon/
+          if git diff --cached --quiet; then
+            echo "No data changes"
+            exit 0
+          fi
+          git commit -m "data: update Hello Sayarwon public JSON archive"
+          git -c http.extraheader="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)" push origin HEAD:main
